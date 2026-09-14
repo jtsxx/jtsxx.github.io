@@ -6,7 +6,7 @@
 <title>CAB AI — Coming Soon</title>
 <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#070604;--ink:#f7edd2;--muted:#cbb98a;--gold:#f0c14b;--gold2:#c9971a;--blue:#2ecbff;--line:rgba(240,193,75,.22)}
+:root{--bg:#070604;--ink:#f7edd2;--muted:#d4c49a;--gold:#f0c14b;--gold2:#c9971a;--blue:#2ecbff;--line:rgba(240,193,75,.22);--header-h:72px}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:Manrope,system-ui,sans-serif;background:#070604;color:var(--ink);line-height:1.65}
@@ -16,10 +16,13 @@ a{color:inherit;text-decoration:none}
 .nav{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:rgba(7,6,4,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
 .logo{font-family:Audiowide,sans-serif;letter-spacing:.12em;font-size:18px}
 .logo b{color:var(--gold)}.logo i{color:var(--blue);font-style:normal;text-shadow:0 0 12px rgba(46,203,255,.65)}
-.burger{width:44px;height:44px;border:1px solid var(--line);background:#120e08;color:var(--gold);border-radius:10px}
+.burger{width:44px;height:44px;border:1px solid var(--line);background:#120e08;color:var(--gold);border-radius:10px;cursor:pointer}
+.burger:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .menu{display:none;flex-direction:column;padding:8px 18px 16px;background:#0b0906}
 .menu.open{display:flex}
 .menu a{font-size:13px;letter-spacing:.14em;color:var(--muted);padding:12px 0;border-bottom:1px solid var(--line);font-family:Audiowide,sans-serif}
+.menu a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;color:var(--gold)}
+#top,#vision,#roadmap,#support{scroll-margin-top:var(--header-h)}
 .hero{padding:28px 18px 36px}
 .hero-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 0 40px rgba(240,193,75,.12)}
 .hero-card img{width:100%;display:block}
@@ -31,8 +34,11 @@ h1 i{font-style:normal;color:#2ecbff;text-shadow:0 0 8px #2ecbff,0 0 18px #1aa3f
 .sub{color:var(--muted);margin-bottom:18px}
 .mail,.btn{width:100%;border-radius:12px;font-family:inherit;font-size:15px;font-weight:800}
 .mail{background:#120e08;border:1px solid var(--line);color:#fff;padding:14px;margin-bottom:10px}
+.mail:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 .btn{display:inline-flex;align-items:center;justify-content:center;border:0;padding:15px;cursor:pointer}
+.btn:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
 .btn-gold{background:linear-gradient(180deg,#ffd76a,#d4a017);color:#1a1404;box-shadow:0 8px 24px rgba(240,193,75,.28)}
+.btn-link{display:inline-block;margin-top:10px;padding:10px 0;font-size:13px;font-weight:700;color:var(--blue);text-decoration:underline;text-underline-offset:3px;width:auto}
 .section{padding:52px 18px}
 .eyebrow{color:var(--gold);font-size:11px;letter-spacing:.18em;font-family:Audiowide,sans-serif}
 h2{font-family:Audiowide,sans-serif;font-size:clamp(26px,7vw,40px);margin:8px 0 16px;color:var(--gold)}
@@ -41,9 +47,11 @@ h2 span{color:var(--blue)}
 .n{color:var(--gold);font-weight:800}
 .cta{margin-top:16px;padding:20px;border-radius:16px;border:1px solid rgba(46,203,255,.28)}
 .cta .btn{margin-top:14px}
+.sim-tag{display:inline-block;font-size:11px;letter-spacing:.14em;font-family:Audiowide,sans-serif;color:var(--blue);border:1px solid rgba(46,203,255,.35);padding:4px 10px;border-radius:999px;margin-bottom:10px}
 .addr{word-break:break-all;background:#090704;padding:14px;margin:12px 0;font-size:13px;border-radius:10px;border:1px solid var(--line)}
-footer{padding:24px 18px 64px;color:var(--muted)}
-.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#16110a;border:1px solid var(--line);color:var(--gold);padding:12px 16px;display:none;z-index:80;border-radius:12px}
+footer{padding:24px 18px 64px;color:var(--muted);font-size:13px}
+footer p{margin-top:8px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#16110a;border:1px solid var(--line);color:var(--gold);padding:12px 16px;display:none;z-index:80;border-radius:12px;max-width:min(92vw,420px);text-align:center}
 .save-row{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:8px}
 .save-amt{font-family:Audiowide,sans-serif;font-size:36px;color:var(--gold)}
 .bar{height:8px;background:#1a140c;margin:12px 0 6px;border-radius:99px;overflow:hidden}
@@ -52,66 +60,137 @@ footer{padding:24px 18px 64px;color:var(--muted)}
 .donor span{color:var(--gold);font-weight:800}
 .access{margin-top:16px;padding:18px;border-radius:16px;border:1px solid var(--line);background:#120e08}
 .access h3{color:var(--gold);margin-bottom:8px}
+.access ol{margin:10px 0 0 18px;color:var(--muted);font-size:14px}
+.access li{margin-bottom:6px}
 .fine{color:var(--muted);font-size:13px;margin-top:8px}
+.sync-banner{display:none;margin-top:12px;padding:12px 14px;border-radius:12px;font-size:13px;border:1px solid rgba(240,193,75,.35);background:rgba(240,193,75,.08);color:var(--gold)}
+.sync-banner.err{border-color:rgba(255,120,80,.45);background:rgba(255,80,40,.1);color:#ffb39a}
+.sync-banner.ok{border-color:rgba(46,203,255,.35);background:rgba(46,203,255,.08);color:var(--blue)}
+.sync-banner.show{display:block}
+.form-hint{color:var(--muted);font-size:12px;margin-top:8px}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
-<header class="nav"><a class="logo" href="#top"><b>CAB</b><i>AI</i></a><button class="burger" onclick="menu()">☰</button></header>
-<div class="menu" id="menu">
+<header class="nav">
+  <a class="logo" href="#top"><b>CAB</b><i>AI</i></a>
+  <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" onclick="menu()">☰</button>
+</header>
+<div class="menu" id="menu" hidden>
   <a href="#vision" onclick="menu()">VISION</a>
   <a href="demo.html" onclick="menu()">APP DEMO</a>
   <a href="#roadmap" onclick="menu()">ROADMAP</a>
   <a href="#support" onclick="menu()">SUPPORT</a>
 </div>
 <section class="hero" id="top">
-  <div class="hero-card"><img src="https://id-preview--229b5f00-5747-4377-bbf4-e6d7f1926b1c.lovable.app/__l5e/assets-v1/a5e266d2-c0cc-46c2-8cb3-6837f509d0a8/cab-ai-logo-banner.jpeg" alt="CABAI coming soon"/></div>
-  <div class="kicker">COMING SOON</div>
+  <div class="hero-card"><img src="assets/cab-ai-logo-banner.jpeg" alt="CAB AI coming soon banner"/></div>
+  <div class="kicker">COMING SOON · CONCEPT STAGE</div>
   <h1><b>CAB</b><i>AI</i></h1>
   <p class="lead">The coin is the beginning. The network is the goal.</p>
   <p class="sub">A community-powered project building toward a real autonomous transportation business.</p>
-  <form onsubmit="notify(event)"><input class="mail" id="email" type="email" placeholder="Enter your email" required/><button class="btn btn-gold" type="submit">Get launch updates →</button></form>
+  <form id="waitlistForm" onsubmit="notify(event)" novalidate>
+    <label class="visually-hidden" for="email">Email for launch updates</label>
+    <input class="mail" id="email" name="email" type="email" placeholder="Enter your email" required autocomplete="email"/>
+    <button class="btn btn-gold" type="submit">Get launch updates →</button>
+    <p class="form-hint">Saved on this device for now — cloud waitlist backend is not wired yet.</p>
+  </form>
 </section>
 <section class="section" id="vision">
-<p class="eyebrow">THE THESIS</p>
-<h2>MORE THAN A TOKEN.<br><span>A ROAD TO SOMETHING REAL.</span></h2>
-<div class="card"><div class="n">01</div><h3>Coin</h3><p class="fine">The spark that funds the first miles.</p></div>
-<div class="cta"><p>See a unit get assigned, watch pickup time count down, and follow the cab on the route.</p><a class="btn btn-gold" href="demo.html">Open the ride demo →</a></div>
+  <p class="eyebrow">THE THESIS</p>
+  <h2>MORE THAN A TOKEN.<br><span>A ROAD TO SOMETHING REAL.</span></h2>
+  <div class="card"><div class="n">01</div><h3>Coin</h3><p class="fine">The spark that funds the first miles.</p></div>
+  <div class="cta">
+    <span class="sim-tag">SIMULATION</span>
+    <p>See how a unit could be assigned, watch a compressed pickup countdown, and follow a cab along a demo route — concept only, not a live fleet.</p>
+    <a class="btn btn-gold" href="demo.html">Open the ride simulation →</a>
+  </div>
 </section>
 <section class="section" id="roadmap">
-<p class="eyebrow">ROADMAP</p>
-<h2>BUILT IN <span>STAGES.</span></h2>
-<div class="card"><div class="n">01</div><h3>Signal</h3><p class="fine">Community, concept demo, and early support.</p></div>
-<div class="card"><div class="n">02</div><h3>Launch</h3><p class="fine">Token and private briefing for early supporters.</p></div>
-<div class="card"><div class="n">03</div><h3>Network</h3><p class="fine">Product path toward a real ride network.</p></div>
+  <p class="eyebrow">ROADMAP</p>
+  <h2>BUILT IN <span>STAGES.</span></h2>
+  <div class="card"><div class="n">01</div><h3>Signal</h3><p class="fine">Community, concept demo, and early support.</p></div>
+  <div class="card"><div class="n">02</div><h3>Launch</h3><p class="fine">Token and private briefing for early supporters.</p></div>
+  <div class="card"><div class="n">03</div><h3>Network</h3><p class="fine">Product path toward a real ride network.</p></div>
 </section>
 <section class="section" id="support">
-<p class="eyebrow">SUPPORT THE BUILD</p>
-<h2>FUEL THE <span>NEXT STAGE.</span></h2>
-<p class="fine">Early contributions are modest by design. They cover development, hosting, and first operating costs — not a fundraising round.</p>
-<div class="card">
-<div class="fine">BUILD MILESTONE · LIVE FROM WALLETS</div>
-<div class="save-row"><div class="save-amt">$5,000</div><div class="fine" id="raisedLabel">$0.00 raised so far</div></div>
-<div class="bar"><i id="raisedBar" style="width:0%"></i></div>
-<p class="fine" id="raisedNote">$0 of $5,000. Updates when a transfer hits SOL, ETH, Base, or BTC.</p>
-</div>
-<div class="card"><strong>Live supporters</strong><div id="donorList"><p class="fine">No donations yet. Be the first.</p></div></div>
-<div class="access">
-<h3>Early-access channel</h3>
-<p>Because support at this stage is small and limited, it is treated as a seat at the table — not a paid product. Contributors who back the project and join Telegram are moved into a private briefing chat. That room receives the fullest launch briefing and the first notice before the public drop.</p>
-<a class="btn btn-gold" style="margin-top:14px" href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Join Telegram →</a>
-</div>
-<div class="card"><strong>Solana</strong><div class="addr">A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5</div><button class="btn btn-gold" type="button" onclick="copyAddr('A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5','Solana')">Copy SOL address</button></div>
-<div class="card"><strong>Ethereum</strong><div class="addr">0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8</div><button class="btn btn-gold" type="button" onclick="copyAddr('0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8','Ethereum')">Copy ETH address</button></div>
-<div class="card"><strong>Base</strong><div class="addr">0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8</div><button class="btn btn-gold" type="button" onclick="copyAddr('0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8','Base')">Copy Base address</button></div>
-<div class="card"><strong>Bitcoin</strong><div class="addr">bc1p3npy6hxkawppse00g3y857m8th7hlsx5f7tmtc348favj7s5rrks5t2wat</div><button class="btn btn-gold" type="button" onclick="copyAddr('bc1p3npy6hxkawppse00g3y857m8th7hlsx5f7tmtc348favj7s5rrks5t2wat','Bitcoin')">Copy BTC address</button><p class="fine">Send only on the labeled network. Send only what you can afford to lose.</p></div>
+  <p class="eyebrow">SUPPORT THE BUILD</p>
+  <h2>FUEL THE <span>NEXT STAGE.</span></h2>
+  <p class="fine">Early contributions are modest by design. They cover development, hosting, and first operating costs — not a fundraising round.</p>
+  <div class="card">
+    <div class="fine">BUILD MILESTONE · WALLET SYNC</div>
+    <div class="save-row"><div class="save-amt">$5,000</div><div class="fine" id="raisedLabel">$0.00 raised so far</div></div>
+    <div class="bar"><i id="raisedBar" style="width:0%"></i></div>
+    <p class="fine" id="raisedNote">$0.00 of $5,000. No donations yet — totals update when a transfer hits SOL, ETH, Base, or BTC.</p>
+    <div class="sync-banner" id="syncBanner" role="status" aria-live="polite"></div>
+  </div>
+  <div class="card"><strong>Supporters</strong><div id="donorList"><p class="fine">No donations yet. Be the first.</p></div></div>
+  <div class="access">
+    <h3>Early-access channel</h3>
+    <p>Support at this stage is small and limited — treated as a seat at the table, not a paid product.</p>
+    <ol>
+      <li>Send a contribution on a labeled network (only what you can afford to lose).</li>
+      <li>Join the public Telegram below and introduce yourself.</li>
+      <li>We move verified early supporters into a private briefing chat for the fullest launch briefing and first notice before a public drop.</li>
+    </ol>
+    <p class="fine">Joining Telegram alone does not guarantee a private seat; contribution + join is the path.</p>
+    <a class="btn btn-gold" style="margin-top:14px" href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Join Telegram →</a>
+  </div>
+  <div class="card">
+    <strong>Solana</strong>
+    <div class="addr">A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5</div>
+    <button class="btn btn-gold" type="button" onclick="copyAddr('A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5','Solana')">Copy SOL address</button>
+    <a class="btn-link" href="https://solscan.io/account/A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5" target="_blank" rel="noopener">View on Solscan →</a>
+  </div>
+  <div class="card">
+    <strong>Ethereum</strong>
+    <div class="addr">0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8</div>
+    <button class="btn btn-gold" type="button" onclick="copyAddr('0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8','Ethereum')">Copy ETH address</button>
+    <a class="btn-link" href="https://etherscan.io/address/0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8" target="_blank" rel="noopener">View on Etherscan →</a>
+  </div>
+  <div class="card">
+    <strong>Base</strong>
+    <div class="addr">0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8</div>
+    <button class="btn btn-gold" type="button" onclick="copyAddr('0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8','Base')">Copy Base address</button>
+    <a class="btn-link" href="https://basescan.org/address/0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8" target="_blank" rel="noopener">View on Basescan →</a>
+    <p class="fine">ETH and Base intentionally share the same address — send on the correct network only.</p>
+  </div>
+  <div class="card">
+    <strong>Bitcoin</strong>
+    <div class="addr">bc1p3npy6hxkawppse00g3y857m8th7hlsx5f7tmtc348favj7s5rrks5t2wat</div>
+    <button class="btn btn-gold" type="button" onclick="copyAddr('bc1p3npy6hxkawppse00g3y857m8th7hlsx5f7tmtc348favj7s5rrks5t2wat','Bitcoin')">Copy BTC address</button>
+    <a class="btn-link" href="https://mempool.space/address/bc1p3npy6hxkawppse00g3y857m8th7hlsx5f7tmtc348favj7s5rrks5t2wat" target="_blank" rel="noopener">View on mempool.space →</a>
+    <p class="fine">Send only on the labeled network. Send only what you can afford to lose.</p>
+  </div>
 </section>
-<footer>© 2026 CAB AI. Concept-stage project. Not affiliated with Tesla.</footer>
-<div class="toast" id="toast"></div>
+<footer>
+  <p>© 2026 CAB AI. Concept-stage project. Not affiliated with Tesla.</p>
+  <p>Concept-stage risk: nothing here is a live ride network, investment offer, or guaranteed product. Support is voluntary and may never convert into a finished service.</p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",4200)}
-function menu(){document.getElementById("menu").classList.toggle("open")}
+function menu(){
+  const m=document.getElementById("menu");
+  const btn=document.querySelector(".burger");
+  const open=!m.classList.contains("open");
+  m.classList.toggle("open",open);
+  m.hidden=!open;
+  if(btn)btn.setAttribute("aria-expanded",open?"true":"false");
+}
 function copyAddr(addr,label){navigator.clipboard.writeText(addr).then(()=>toast(label+" address copied")).catch(()=>toast(addr))}
-function notify(e){e.preventDefault();toast("You're on the launch list.");e.target.reset()}
+const WAITLIST_KEY="cabai_waitlist_v1";
+function notify(e){
+  e.preventDefault();
+  const input=document.getElementById("email");
+  const email=(input.value||"").trim().toLowerCase();
+  if(!email||!input.checkValidity()){toast("Enter a valid email");input.focus();return}
+  let list=[];
+  try{list=JSON.parse(localStorage.getItem(WAITLIST_KEY)||"[]")}catch(err){list=[]}
+  if(!list.includes(email))list.push(email);
+  localStorage.setItem(WAITLIST_KEY,JSON.stringify(list));
+  toast("Saved locally for now — launch list backend not wired yet");
+  e.target.reset();
+}
 const GOAL=5000;
 const W={sol:"A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5",eth:"0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8",btc:"bc1p3npy6hxkawppse00g3y857m8th7hlsx5f7tmtc348favj7s5rrks5t2wat"};
 const seenKey="cabai_seen_donations_v1";
@@ -120,13 +199,109 @@ let prices={sol:0,eth:0,btc:0};
 function money(n){return "$"+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}
 function shortA(a){return a.slice(0,4)+"\u2026"+a.slice(-4)}
 function mark(id){seen[id]=1;localStorage.setItem(seenKey,JSON.stringify(seen))}
-async function pricesNow(){const r=await fetch("https://api.coingecko.com/api/v3/simple/price?ids=solana,ethereum,bitcoin&vs_currencies=usd");const j=await r.json();prices.sol=j.solana&&j.solana.usd||0;prices.eth=j.ethereum&&j.ethereum.usd||0;prices.btc=j.bitcoin&&j.bitcoin.usd||0}
-function rpc(url,method,params){return fetch(url,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({jsonrpc:"2.0",id:1,method,params})}).then(r=>r.json())}
-async function solIn(){const items=[];let usd=0;try{const sigs=await rpc("https://solana-rpc.publicnode.com","getSignaturesForAddress",[W.sol,{limit:20}]);const list=(sigs.result||[]).filter(s=>!s.err).slice(0,12);for(const s of list){const tx=await rpc("https://solana-rpc.publicnode.com","getTransaction",[s.signature,{encoding:"jsonParsed",maxSupportedTransactionVersion:0}]);const t=tx.result;if(!t||!t.meta)continue;const keys=(t.transaction.message.accountKeys||[]).map(k=>typeof k==="string"?k:k.pubkey);const i=keys.indexOf(W.sol);if(i<0)continue;const lamports=(t.meta.postBalances[i]||0)-(t.meta.preBalances[i]||0);if(lamports<=5000)continue;const sol=lamports/1e9;const val=sol*prices.sol;usd+=val;const from=keys.find(k=>k!==W.sol)||"wallet";items.push({id:"sol-"+s.signature,label:shortA(from),amt:sol.toFixed(3)+" SOL",usd:val,chain:"SOL"})}}catch(e){}return{usd,items}}
-async function evmBal(url,chain){try{const j=await rpc(url,"eth_getBalance",[W.eth,"latest"]);const wei=parseInt(j.result,16);if(!wei)return{usd:0,items:[]};const eth=wei/1e18;const val=eth*prices.eth;return{usd:val,items:val>0.5?[{id:chain+"-bal",label:chain+" wallet",amt:eth.toFixed(4)+" ETH",usd:val,chain}]:[]}}catch(e){return{usd:0,items:[]}}}
-async function btcIn(){try{const r=await fetch("https://blockstream.info/api/address/"+W.btc);const j=await r.json();const funded=((j.chain_stats&&j.chain_stats.funded_txo_sum)||0)+((j.mempool_stats&&j.mempool_stats.funded_txo_sum)||0);const btc=funded/1e8;const val=btc*prices.btc;return{usd:val,items:val>1?[{id:"btc-in",label:"BTC wallet",amt:btc.toFixed(6)+" BTC",usd:val,chain:"BTC"}]:[]}}catch(e){return{usd:0,items:[]}}}
-function render(total,items){const pct=Math.max(0,Math.min(100,(total/GOAL)*100));document.getElementById("raisedLabel").textContent=money(total)+" raised so far";document.getElementById("raisedBar").style.width=pct.toFixed(1)+"%";document.getElementById("raisedNote").textContent=money(total)+" of $5,000 synced from your wallets. "+pct.toFixed(1)+"% reserved.";const box=document.getElementById("donorList");if(!items.length){box.innerHTML='<p class="fine">No donations yet. Be the first.</p>';return}box.innerHTML=items.slice(0,8).map(d=>'<div class="donor"><b>'+d.label+'</b><span>'+d.amt+'</span></div>').join("")}
-async function refreshDonations(){try{await pricesNow()}catch(e){}const [sol,eth,base,btc]=await Promise.all([solIn(),evmBal("https://ethereum.publicnode.com","ETH"),evmBal("https://base.publicnode.com","BASE"),btcIn()]);const items=[].concat(sol.items,eth.items,base.items,btc.items);const total=sol.usd+eth.usd+base.usd+btc.usd;render(total,items);items.forEach(d=>{if(!seen[d.id]&&d.usd>=1){mark(d.id);toast("New support \u00b7 "+d.amt+" \u00b7 "+money(d.usd))}else mark(d.id)})}
+function setSyncBanner(kind,msg){
+  const el=document.getElementById("syncBanner");
+  el.className="sync-banner show "+kind;
+  el.textContent=msg;
+}
+async function pricesNow(){
+  const r=await fetch("https://api.coingecko.com/api/v3/simple/price?ids=solana,ethereum,bitcoin&vs_currencies=usd");
+  if(!r.ok)throw new Error("CoinGecko HTTP "+r.status);
+  const j=await r.json();
+  prices.sol=(j.solana&&j.solana.usd)||0;
+  prices.eth=(j.ethereum&&j.ethereum.usd)||0;
+  prices.btc=(j.bitcoin&&j.bitcoin.usd)||0;
+  if(!prices.sol&&!prices.eth&&!prices.btc)throw new Error("CoinGecko returned empty prices");
+}
+function rpc(url,method,params){
+  return fetch(url,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({jsonrpc:"2.0",id:1,method,params})}).then(async r=>{
+    if(!r.ok)throw new Error("RPC HTTP "+r.status);
+    return r.json();
+  });
+}
+async function solIn(){
+  const items=[];let usd=0;let ok=false;
+  try{
+    const sigs=await rpc("https://solana-rpc.publicnode.com","getSignaturesForAddress",[W.sol,{limit:20}]);
+    ok=true;
+    const list=(sigs.result||[]).filter(s=>!s.err).slice(0,12);
+    for(const s of list){
+      const tx=await rpc("https://solana-rpc.publicnode.com","getTransaction",[s.signature,{encoding:"jsonParsed",maxSupportedTransactionVersion:0}]);
+      const t=tx.result;if(!t||!t.meta)continue;
+      const keys=(t.transaction.message.accountKeys||[]).map(k=>typeof k==="string"?k:k.pubkey);
+      const i=keys.indexOf(W.sol);if(i<0)continue;
+      const lamports=(t.meta.postBalances[i]||0)-(t.meta.preBalances[i]||0);
+      if(lamports<=5000)continue;
+      const sol=lamports/1e9;const val=sol*prices.sol;usd+=val;
+      const from=keys.find(k=>k!==W.sol)||"wallet";
+      items.push({id:"sol-"+s.signature,label:shortA(from),amt:sol.toFixed(3)+" SOL",usd:val,chain:"SOL"});
+    }
+  }catch(e){ok=false}
+  return{usd,items,ok};
+}
+async function evmBal(url,chain){
+  try{
+    const j=await rpc(url,"eth_getBalance",[W.eth,"latest"]);
+    if(!j||j.result==null)return{usd:0,items:[],ok:false};
+    const wei=parseInt(j.result,16)||0;
+    const eth=wei/1e18;const val=eth*prices.eth;
+    return{usd:val,items:val>0.5?[{id:chain+"-bal",label:chain+" wallet",amt:eth.toFixed(4)+" ETH",usd:val,chain}]:[],ok:true};
+  }catch(e){return{usd:0,items:[],ok:false}}
+}
+async function btcIn(){
+  try{
+    const r=await fetch("https://blockstream.info/api/address/"+W.btc);
+    if(!r.ok)throw new Error("btc");
+    const j=await r.json();
+    const funded=((j.chain_stats&&j.chain_stats.funded_txo_sum)||0)+((j.mempool_stats&&j.mempool_stats.funded_txo_sum)||0);
+    const btc=funded/1e8;const val=btc*prices.btc;
+    return{usd:val,items:val>1?[{id:"btc-in",label:"BTC wallet",amt:btc.toFixed(6)+" BTC",usd:val,chain:"BTC"}]:[],ok:true};
+  }catch(e){return{usd:0,items:[],ok:false}}
+}
+function render(total,items,syncMeta){
+  const pct=Math.max(0,Math.min(100,(total/GOAL)*100));
+  document.getElementById("raisedLabel").textContent=money(total)+" raised so far";
+  document.getElementById("raisedBar").style.width=pct.toFixed(1)+"%";
+  if(syncMeta.priceOk&&syncMeta.anyOk){
+    document.getElementById("raisedNote").textContent=money(total)+" of $5,000 synced from wallets. "+pct.toFixed(1)+"% of milestone.";
+    setSyncBanner("ok","Synced from wallets · "+new Date().toLocaleTimeString());
+  }else if(!syncMeta.priceOk){
+    document.getElementById("raisedNote").textContent=money(total)+" of $5,000. Price feed unavailable — shown total may be incomplete.";
+    setSyncBanner("err","Donation sync issue: CoinGecko price feed failed. Totals may be stale or $0 until prices load.");
+  }else{
+    document.getElementById("raisedNote").textContent=money(total)+" of $5,000. Some chain APIs failed — shown total may be incomplete.";
+    setSyncBanner("err","Donation sync issue: one or more wallet RPCs failed ("+syncMeta.failed.join(", ")+"). Showing partial or $0 until sync recovers.");
+  }
+  const box=document.getElementById("donorList");
+  if(!items.length){
+    box.innerHTML='<p class="fine">No donations yet. Be the first.</p>';
+    return;
+  }
+  box.innerHTML=items.slice(0,8).map(d=>'<div class="donor"><b>'+d.label+' · '+d.chain+'</b><span>'+d.amt+'</span></div>').join("");
+}
+async function refreshDonations(){
+  let priceOk=false;
+  try{await pricesNow();priceOk=true}catch(e){priceOk=false}
+  const [sol,eth,base,btc]=await Promise.all([
+    solIn(),
+    evmBal("https://ethereum.publicnode.com","ETH"),
+    evmBal("https://base.publicnode.com","BASE"),
+    btcIn()
+  ]);
+  const failed=[];
+  if(!sol.ok)failed.push("SOL");
+  if(!eth.ok)failed.push("ETH");
+  if(!base.ok)failed.push("Base");
+  if(!btc.ok)failed.push("BTC");
+  const anyOk=sol.ok||eth.ok||base.ok||btc.ok;
+  const items=[].concat(sol.items,eth.items,base.items,btc.items).filter(d=>d.usd>0);
+  const total=sol.usd+eth.usd+base.usd+btc.usd;
+  render(total,items,{priceOk,anyOk,failed});
+  items.forEach(d=>{
+    if(!seen[d.id]&&d.usd>=1){mark(d.id);toast("New support · "+d.amt+" · "+money(d.usd))}
+    else mark(d.id);
+  });
+}
 refreshDonations();
 setInterval(refreshDonations,20000);
 </script>

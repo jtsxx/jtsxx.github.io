@@ -3,25 +3,27 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CAB AI — Ride Demo</title>
+<title>CAB AI — Ride Simulation</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Sora:wght@400;600;700&family=Syne:wght@800&display=swap" rel="stylesheet"/>
 <style>
-:root{--gold:#f5c448;--cyan:#3ad4ff;--bg:#07080a;--muted:#9aa3ad}
+:root{--gold:#f5c448;--cyan:#3ad4ff;--bg:#07080a;--muted:#b0b8c2}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Sora,system-ui,sans-serif;background:var(--bg);color:#f3efe6;line-height:1.55}
 a{color:inherit;text-decoration:none}
 .nav{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:rgba(7,8,10,.92)}
 .logo{font-family:Orbitron,sans-serif;font-weight:800;letter-spacing:.18em}
 .logo b{color:var(--gold)}.logo i{color:var(--cyan);font-style:normal}
-.back{font-size:12px;letter-spacing:.12em;color:#b8c0c8;font-family:Orbitron,sans-serif}
+.back{font-size:12px;letter-spacing:.12em;color:#c5cdd6;font-family:Orbitron,sans-serif}
+.back:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .page{padding:22px 18px 70px}
 .eyebrow{color:var(--gold);font-size:11px;letter-spacing:.18em;font-family:Orbitron,sans-serif}
-h1{font-family:Syne,sans-serif;font-size:clamp(28px,8vw,42px);margin:8px 0 16px}
+h1{font-family:Syne,sans-serif;font-size:clamp(28px,8vw,42px);margin:8px 0 10px}
+.sim-banner{margin:0 0 16px;padding:12px 14px;border:1px solid rgba(58,212,255,.4);background:rgba(58,212,255,.08);color:var(--cyan);font-size:13px;border-radius:8px}
 .ride{border:1px solid rgba(245,196,72,.2);background:#0b0d11}
 .status{display:flex;align-items:center;gap:8px;padding:16px 16px 0;color:var(--cyan);font-size:12px}
 .status i{width:8px;height:8px;border-radius:50%;background:#3dff8b;flex-shrink:0}
 .clock{margin:12px 16px 0;padding:16px;border:1px solid rgba(245,196,72,.4);background:#120e06;text-align:center}
-.clock label{display:block;font-family:Orbitron,sans-serif;letter-spacing:.16em;font-size:11px;color:var(--gold)}
+.clock .clock-label{display:block;font-family:Orbitron,sans-serif;letter-spacing:.16em;font-size:11px;color:var(--gold)}
 .clock strong{display:block;font-family:Orbitron,sans-serif;font-size:52px;color:#fff}
 .clock em{font-style:normal;color:var(--cyan);font-size:13px}
 .mapwrap{margin:12px 16px;height:220px;border:1px solid rgba(58,212,255,.3);background:#081018;position:relative;overflow:hidden}
@@ -39,17 +41,26 @@ h1{font-family:Syne,sans-serif;font-size:clamp(28px,8vw,42px);margin:8px 0 16px}
 .fields,.log,.fare{padding:12px 16px}
 .fields label{display:block;font-size:11px;letter-spacing:.12em;color:var(--muted);margin:8px 0 4px}
 .fields input{width:100%;background:#0a0b0e;border:1px solid rgba(245,196,72,.25);color:#fff;padding:12px}
-.choice{margin:8px 16px;padding:14px;border:1px solid rgba(255,255,255,.08)}
+.fields input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#fleet{display:flex;flex-direction:column;gap:0;margin:0;padding:0;border:0}
+#fleet legend{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.choice{margin:8px 16px;padding:14px;border:1px solid rgba(255,255,255,.08);background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer;width:calc(100% - 32px);display:block;border-radius:0}
+.choice:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 .choice.on{border-color:var(--gold);background:rgba(245,196,72,.06)}
+.choice:disabled{opacity:.55;cursor:not-allowed}
 .log{margin:0 16px 12px;background:#08090c;border:1px solid rgba(58,212,255,.15);min-height:64px}
 .log b{display:block;color:var(--gold);font-size:11px;font-family:Orbitron,sans-serif}
-.gold,.ghost{width:calc(100% - 32px);margin:8px 16px;font-weight:800;padding:15px}
+.gold,.ghost{width:calc(100% - 32px);margin:8px 16px;font-weight:800;padding:15px;cursor:pointer;font-family:inherit}
 .gold{background:var(--gold);color:#14110a;border:0}
+.gold:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.gold:disabled{opacity:.55;cursor:not-allowed}
 .ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.14)}
-.note{color:#6f7780;font-size:12px;padding:0 16px 18px}
-.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#15171c;padding:12px 16px;display:none;z-index:80}
+.ghost:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.note{color:#9aa3ad;font-size:13px;padding:0 16px 10px;line-height:1.5}
+.note-strong{margin:0 16px 18px;padding:12px 14px;border:1px solid rgba(245,196,72,.45);background:rgba(245,196,72,.1);color:#f0d78a;font-size:13px;font-weight:600}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#15171c;border:1px solid rgba(245,196,72,.3);padding:12px 16px;display:none;z-index:80;max-width:min(92vw,400px);text-align:center;color:var(--gold)}
 .busy{opacity:.55;pointer-events:none}
-.fine{color:#6f7780;font-size:12px}
+.fine{color:var(--muted);font-size:12px}
 </style>
 </head>
 <body>
@@ -59,15 +70,16 @@ h1{font-family:Syne,sans-serif;font-size:clamp(28px,8vw,42px);margin:8px 0 16px}
 </header>
 <div class="page">
   <p class="eyebrow">INTERACTIVE CONCEPT DEMO</p>
-  <h1>Ride network</h1>
+  <h1>Ride simulation</h1>
+  <div class="sim-banner" role="status">SIMULATION ONLY — not a live fleet, not real GPS, not bookable rides.</div>
   <div class="ride">
-    <div class="status"><i></i><span id="livetext">NETWORK ONLINE · SIMULATION</span></div>
+    <div class="status"><i aria-hidden="true"></i><span id="livetext">SIMULATION READY · DEMO NETWORK</span></div>
     <div class="clock">
-      <label id="clocklab">ESTIMATED ARRIVAL</label>
+      <span class="clock-label" id="clocklab">ESTIMATED ARRIVAL</span>
       <strong id="clock">--:--</strong>
-      <em id="clocksub">Enter a pickup to match a unit</em>
+      <em id="clocksub">Enter a pickup to match a simulated unit</em>
     </div>
-    <div class="mapwrap">
+    <div class="mapwrap" aria-hidden="true">
       <svg viewBox="0 0 320 220" id="mapsvg">
         <defs>
           <pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -98,27 +110,36 @@ h1{font-family:Syne,sans-serif;font-size:clamp(28px,8vw,42px);margin:8px 0 16px}
       <div class="fine" id="phase">Waiting</div>
     </div>
     <div class="fields" id="formblock">
-      <label>PICKUP ADDRESS</label>
-      <input id="pickup" value="128 Future Ave, Austin, TX"/>
-      <label>DESTINATION ADDRESS</label>
-      <input id="dest" value="500 Congress Ave, Austin, TX"/>
+      <label for="pickup">PICKUP ADDRESS</label>
+      <input id="pickup" name="pickup" type="text" value="128 Future Ave, Austin, TX" autocomplete="street-address"/>
+      <label for="dest">DESTINATION ADDRESS</label>
+      <input id="dest" name="dest" type="text" value="500 Congress Ave, Austin, TX" autocomplete="street-address"/>
     </div>
-    <div id="fleet">
-      <div class="choice on" id="car-one" onclick="pick('one')"><strong>CABAI One</strong><div class="fine">Private sedan · 4 seats</div></div>
-      <div class="choice" id="car-xl" onclick="pick('xl')"><strong>CABAI XL</strong><div class="fine">SUV · 6 seats</div></div>
-      <div class="choice" id="car-share" onclick="pick('share')"><strong>CABAI Share</strong><div class="fine">Shared · 2 seats</div></div>
-    </div>
+    <fieldset id="fleet">
+      <legend>Vehicle type</legend>
+      <button type="button" class="choice on" id="car-one" role="radio" aria-checked="true" aria-label="CABAI One, private sedan, 4 seats" data-vehicle="one">
+        <strong>CABAI One</strong><div class="fine">Private sedan · 4 seats</div>
+      </button>
+      <button type="button" class="choice" id="car-xl" role="radio" aria-checked="false" aria-label="CABAI XL, SUV, 6 seats" data-vehicle="xl">
+        <strong>CABAI XL</strong><div class="fine">SUV · 6 seats</div>
+      </button>
+      <button type="button" class="choice" id="car-share" role="radio" aria-checked="false" aria-label="CABAI Share, shared, 2 seats" data-vehicle="share">
+        <strong>CABAI Share</strong><div class="fine">Shared · 2 seats</div>
+      </button>
+    </fieldset>
     <div class="fare"><span class="fine">Estimated fare</span> <strong id="fare">$0.00</strong></div>
-    <div class="log" id="log"><b>DISPATCH</b>Waiting for a request.</div>
-    <button class="gold" id="mainbtn" type="button" onclick="step()">FIND CLOSEST UNIT</button>
-    <button class="ghost" type="button" onclick="resetDemo()">Reset simulation</button>
-    <p class="note">Simulation only. Arrival times are unique per address pair and compressed for the demo. Not live GPS.</p>
+    <div class="log" id="log" aria-live="polite"><b>DISPATCH</b>Waiting for a simulated request.</div>
+    <button class="gold" id="mainbtn" type="button">FIND CLOSEST UNIT (SIM)</button>
+    <button class="ghost" type="button" id="resetbtn">Reset simulation</button>
+    <p class="note">Simulation only. Not live GPS. No real vehicles are dispatched.</p>
+    <p class="note-strong">Compressed time: pickup and trip countdowns are shortened for the demo. Real-world travel would take longer.</p>
   </div>
 </div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 const names = {one:"CABAI One", xl:"CABAI XL", share:"CABAI Share"};
 const rates = {one:18.4, xl:24.9, share:9.6};
+const vehicleOrder = ["one","xl","share"];
 let v = "one";
 let phase = "idle";
 let fare = 0, miles = 0, tripMin = 0, pickupMin = 0;
@@ -201,12 +222,18 @@ function estimate(){
   document.getElementById("distance").textContent = miles.toFixed(1) + " mi";
   document.getElementById("triptime").textContent = tripMin + " min";
 }
+function setVehicleUI(id){
+  v = id;
+  document.querySelectorAll(".choice").forEach(c => {
+    const on = c.dataset.vehicle === id;
+    c.classList.toggle("on", on);
+    c.setAttribute("aria-checked", on ? "true" : "false");
+  });
+  estimate();
+}
 function pick(id){
   if (phase !== "idle" && phase !== "found") return;
-  v = id;
-  document.querySelectorAll(".choice").forEach(c => c.classList.remove("on"));
-  document.getElementById("car-" + id).classList.add("on");
-  estimate();
+  setVehicleUI(id);
 }
 function log(title, msg){ document.getElementById("log").innerHTML = "<b>" + title + "</b>" + msg; }
 function live(t){ document.getElementById("livetext").textContent = t; }
@@ -223,16 +250,17 @@ function searchUnits(){
   phase = "search";
   document.getElementById("formblock").classList.add("busy");
   document.getElementById("fleet").classList.add("busy");
+  document.querySelectorAll(".choice").forEach(c => { c.disabled = true; });
   document.getElementById("mainbtn").disabled = true;
-  live("SEARCHING NEAREST UNIT");
-  setClock(0, "MATCHING", "Ranking closest available cabs");
+  live("SIMULATION · SEARCHING NEAREST UNIT");
+  setClock(0, "MATCHING", "Ranking closest simulated cabs");
   const a = document.getElementById("pickup").value.trim();
   const unit = "CAI-" + (140 + hash(a + v) % 760);
   const lines = [
-    "Scanning live inventory…",
-    "Filtering units above 80% charge…",
+    "Scanning simulated inventory…",
+    "Filtering demo units above 80% charge…",
     "Ranking by travel time to your pin…",
-    "Found available cab. Heading toward you now."
+    "Match ready. Confirm to start the simulated pickup."
   ];
   let n = 0;
   const iv = setInterval(() => {
@@ -243,50 +271,50 @@ function searchUnits(){
       phase = "found";
       document.getElementById("unit").textContent = unit;
       document.getElementById("charge").textContent = (84 + hash(a) % 14) + "%";
-      document.getElementById("phase").textContent = "Unit locked";
-      live("FOUND AVAILABLE CAB · HEADING TOWARD YOU NOW");
-      setClock(pickupMin * 60, "PICKUP ARRIVES IN", names[v] + " " + unit + " assigned");
-      log("MATCH", "Found available cab heading toward you now. " + unit + " is " + pickupMin + " min from pickup.");
+      document.getElementById("phase").textContent = "Unit matched (sim)";
+      live("SIMULATION · MATCH READY — ORDER TO CONTINUE");
+      setClock(pickupMin * 60, "SIMULATED PICKUP ETA", names[v] + " " + unit + " matched (not moving yet)");
+      log("MATCH", "Simulated match: " + unit + " would be about " + pickupMin + " min from pickup. Order to start the compressed en-route demo.");
       document.getElementById("mainbtn").disabled = false;
-      document.getElementById("mainbtn").textContent = "ORDER " + names[v].toUpperCase();
+      document.getElementById("mainbtn").textContent = "ORDER " + names[v].toUpperCase() + " (SIM)";
     }
   }, 700);
 }
 function confirmRide(){
   phase = "enroute";
   document.getElementById("mainbtn").disabled = true;
-  document.getElementById("phase").textContent = "Inbound";
-  live("FOUND AVAILABLE CAB · HEADING TOWARD YOU NOW");
-  log("EN ROUTE", "Cab is moving to your pin. Arrival time is unique to this address.");
+  document.getElementById("phase").textContent = "Inbound (sim)";
+  live("SIMULATION · CAB EN ROUTE TO PICKUP");
+  log("EN ROUTE", "Simulated cab is moving to your pin. Arrival time is unique to this address pair (compressed).");
   const displayPickup = pickupMin * 60;
   const realMs = 14000 + (hash(document.getElementById("pickup").value) % 4000);
   animateTo(progress, PICKUP_END, realMs, function(raw){
     const remain = displayPickup * (1 - raw);
-    setClock(remain, "PICKUP ARRIVES IN", "Cab heading toward you now");
+    setClock(remain, "PICKUP ARRIVES IN", "Simulated cab heading to pickup");
   }, startTrip);
 }
 function startTrip(){
   phase = "trip";
-  live("ON TRIP");
-  document.getElementById("phase").textContent = "On trip";
-  log("TRIP", "Picked up. En route to destination.");
+  live("SIMULATION · ON TRIP");
+  document.getElementById("phase").textContent = "On trip (sim)";
+  log("TRIP", "Simulated pickup complete. En route to destination.");
   const displayTrip = tripMin * 60;
   const realMs = 16000 + (hash(document.getElementById("dest").value) % 5000);
   animateTo(PICKUP_END, 1, realMs, function(raw){
     const remain = displayTrip * (1 - raw);
-    setClock(remain, "ARRIVAL AT DEST IN", "You are in the vehicle");
+    setClock(remain, "ARRIVAL AT DEST IN", "You are in the simulated vehicle");
     document.getElementById("triptime").textContent = Math.max(0, Math.ceil(remain / 60)) + " min";
   }, arrive);
 }
 function arrive(){
   phase = "done";
   placeCab(1);
-  live("TRIP COMPLETE");
-  document.getElementById("phase").textContent = "Arrived";
+  live("SIMULATION · TRIP COMPLETE");
+  document.getElementById("phase").textContent = "Arrived (sim)";
   document.getElementById("triptime").textContent = "0 min";
-  setClock(0, "ARRIVED", "Destination reached");
+  setClock(0, "ARRIVED", "Destination reached (simulation)");
   document.getElementById("bal").textContent = "$" + Math.max(0, 120 - fare).toFixed(2);
-  log("COMPLETE", "Arrived. Demo fare $" + fare.toFixed(2) + " deducted.");
+  log("COMPLETE", "Arrived. Demo fare $" + fare.toFixed(2) + " deducted from simulation balance.");
   document.getElementById("mainbtn").textContent = "SIMULATION COMPLETE";
   toast("Trip complete — simulation only");
 }
@@ -295,19 +323,45 @@ function resetDemo(){
   phase = "idle";
   document.getElementById("formblock").classList.remove("busy");
   document.getElementById("fleet").classList.remove("busy");
+  document.querySelectorAll(".choice").forEach(c => { c.disabled = false; });
   document.getElementById("mainbtn").disabled = false;
-  document.getElementById("mainbtn").textContent = "FIND CLOSEST UNIT";
+  document.getElementById("mainbtn").textContent = "FIND CLOSEST UNIT (SIM)";
   document.getElementById("unit").textContent = "—";
   document.getElementById("bal").textContent = "$120.00";
   document.getElementById("phase").textContent = "Waiting";
-  live("NETWORK ONLINE · SIMULATION");
+  live("SIMULATION READY · DEMO NETWORK");
   document.getElementById("clock").textContent = "--:--";
   document.getElementById("clocklab").textContent = "ESTIMATED ARRIVAL";
-  document.getElementById("clocksub").textContent = "Enter a pickup to match a unit";
+  document.getElementById("clocksub").textContent = "Enter a pickup to match a simulated unit";
   placeCab(0);
   estimate();
-  log("DISPATCH", "Waiting for a request.");
+  log("DISPATCH", "Waiting for a simulated request.");
 }
+function onFleetKeydown(e){
+  if (phase !== "idle" && phase !== "found") return;
+  const idx = vehicleOrder.indexOf(v);
+  if (e.key === "ArrowDown" || e.key === "ArrowRight"){
+    e.preventDefault();
+    const next = vehicleOrder[(idx + 1) % vehicleOrder.length];
+    pick(next);
+    document.getElementById("car-" + next).focus();
+  } else if (e.key === "ArrowUp" || e.key === "ArrowLeft"){
+    e.preventDefault();
+    const prev = vehicleOrder[(idx - 1 + vehicleOrder.length) % vehicleOrder.length];
+    pick(prev);
+    document.getElementById("car-" + prev).focus();
+  } else if (e.key === " " || e.key === "Enter"){
+    // button already activates; keep default for click semantics
+  }
+}
+document.getElementById("mainbtn").addEventListener("click", step);
+document.getElementById("resetbtn").addEventListener("click", resetDemo);
+document.querySelectorAll(".choice").forEach(btn => {
+  btn.addEventListener("click", () => pick(btn.dataset.vehicle));
+  btn.addEventListener("keydown", onFleetKeydown);
+});
+document.getElementById("fleet").setAttribute("role", "radiogroup");
+document.getElementById("fleet").setAttribute("aria-label", "Choose simulated vehicle");
 document.getElementById("pickup").addEventListener("input", estimate);
 document.getElementById("dest").addEventListener("input", estimate);
 pathLen = road.getTotalLength();
