@@ -3,54 +3,54 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CAB AI — The Future Is En Route</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet"/>
+<title>CAB AI — Coming Soon</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Orbitron:wght@600;800&display=swap" rel="stylesheet"/>
 <style>
-:root{--bg:#0c0d11;--card:#151821;--ink:#f6f3ec;--muted:#9aa3b2;--gold:#f0c14b;--gold2:#c9971a;--teal:#2ad4c5;--line:rgba(255,255,255,.08)}
+:root{--bg:#070604;--ink:#f7edd2;--muted:#cbb98a;--gold:#f0c14b;--gold2:#c9971a;--blue:#2ecbff;--line:rgba(240,193,75,.22)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Manrope,system-ui,sans-serif;background:radial-gradient(1200px 600px at 80% -10%,rgba(42,212,197,.12),transparent 50%),radial-gradient(900px 500px at -10% 20%,rgba(240,193,75,.1),transparent 45%),var(--bg);color:var(--ink);line-height:1.65}
+body{font-family:Manrope,system-ui,sans-serif;background:#070604;color:var(--ink);line-height:1.65}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(700px 280px at 50% 0,rgba(240,193,75,.18),transparent 60%);z-index:0}
 a{color:inherit;text-decoration:none}
-.nav{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:rgba(12,13,17,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-.logo{font-family:Playfair Display,serif;font-weight:700;font-size:24px}
-.logo b{color:var(--gold)}.logo i{color:var(--teal);font-style:normal}
-.burger{width:44px;height:44px;border:1px solid var(--line);background:var(--card);color:#fff;border-radius:12px;font-size:18px}
-.menu{display:none;flex-direction:column;gap:4px;padding:8px 18px 16px}
+.nav,.menu,.hero,.banner,.section,footer{position:relative;z-index:1}
+.nav{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:rgba(7,6,4,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.logo{font-family:Orbitron,sans-serif;font-weight:800;letter-spacing:.12em;font-size:18px}
+.logo b{color:var(--gold)}.logo i{color:var(--blue);font-style:normal;text-shadow:0 0 12px rgba(46,203,255,.65)}
+.burger{width:44px;height:44px;border:1px solid var(--line);background:#120e08;color:var(--gold);border-radius:10px}
+.menu{display:none;flex-direction:column;padding:8px 18px 16px;background:#0b0906}
 .menu.open{display:flex}
-.menu a{font-size:15px;font-weight:700;color:var(--muted);padding:12px 0;border-bottom:1px solid var(--line)}
-.hero{min-height:92svh;padding:48px 18px 72px;position:relative;overflow:hidden;background:#0c0d11 url('https://id-preview--229b5f00-5747-4377-bbf4-e6d7f1926b1c.lovable.app/__l5e/assets-v1/8255305b-1cf4-487c-89d6-afc8436f217a/cab-ai-vehicle.jpg') center 36%/cover no-repeat}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,13,17,.25),rgba(12,13,17,.55) 58%,#0c0d11 100%)}
-.hero>*{position:relative;z-index:1}
-.pill{display:inline-flex;border:1px solid rgba(240,193,75,.45);background:rgba(240,193,75,.12);color:var(--gold);font-size:11px;letter-spacing:.14em;padding:8px 12px;font-weight:800;border-radius:999px}
-.kicker{color:var(--teal);letter-spacing:.18em;font-size:12px;margin:24px 0 10px;font-weight:800}
-h1{font-family:Playfair Display,serif;font-size:clamp(68px,19vw,100px);line-height:.84}
-h1 b{color:var(--gold)}h1 i{font-style:normal;color:var(--teal)}
-.lead{font-size:22px;font-weight:700;margin:16px 0 10px;max-width:16ch}
-.sub{color:#c9cfd8;margin-bottom:22px;max-width:40ch}
-.mail,.btn{width:100%;border-radius:14px;font-family:inherit;font-size:16px}
-.mail{background:rgba(21,24,33,.86);border:1px solid rgba(255,255,255,.14);color:#fff;padding:15px;margin-bottom:10px}
-.btn{display:inline-flex;align-items:center;justify-content:center;border:0;font-weight:800;padding:16px;cursor:pointer}
-.btn-gold{background:linear-gradient(180deg,#ffd56a,#e0ae2a);color:#1a1404;box-shadow:0 10px 28px rgba(240,193,75,.28)}
-.btn-teal{background:linear-gradient(180deg,#3ee4d4,#14998e);color:#04221f}
-.banner img{width:100%;display:block}
-.section{padding:64px 18px}
-.eyebrow{color:var(--gold);font-size:12px;letter-spacing:.16em;font-weight:800}
-h2{font-family:Playfair Display,serif;font-size:clamp(32px,8vw,50px);margin:8px 0 16px;line-height:1.08}
-h2 span{color:var(--teal)}
-.card{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));padding:20px;margin-top:12px;border-radius:18px}
+.menu a{font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--muted);padding:12px 0;border-bottom:1px solid var(--line);font-family:Orbitron,sans-serif}
+.hero{padding:28px 18px 36px}
+.hero-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#16110a,#0b0906);box-shadow:0 0 40px rgba(240,193,75,.12)}
+.hero-card img{width:100%;display:block}
+.kicker{color:var(--gold);letter-spacing:.2em;font-size:11px;margin:18px 0 8px;font-weight:800;font-family:Orbitron,sans-serif}
+h1{font-family:Orbitron,sans-serif;font-size:clamp(52px,16vw,84px);line-height:.9;letter-spacing:.02em}
+h1 b{color:var(--gold);text-shadow:0 0 24px rgba(240,193,75,.35)}
+h1 i{font-style:normal;color:var(--blue);text-shadow:0 0 18px rgba(46,203,255,.7)}
+.lead{font-size:20px;font-weight:700;margin:14px 0 8px}
+.sub{color:var(--muted);margin-bottom:18px}
+.mail,.btn{width:100%;border-radius:12px;font-family:inherit;font-size:15px;font-weight:800}
+.mail{background:#120e08;border:1px solid var(--line);color:#fff;padding:14px;margin-bottom:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:0;padding:15px;cursor:pointer}
+.btn-gold{background:linear-gradient(180deg,#ffd76a,#d4a017);color:#1a1404;box-shadow:0 8px 24px rgba(240,193,75,.28)}
+.section{padding:52px 18px}
+.eyebrow{color:var(--gold);font-size:11px;letter-spacing:.18em;font-weight:800;font-family:Orbitron,sans-serif}
+h2{font-family:Orbitron,sans-serif;font-size:clamp(26px,7vw,40px);margin:8px 0 16px;line-height:1.15;color:var(--gold)}
+h2 span{color:var(--blue);text-shadow:0 0 12px rgba(46,203,255,.45)}
+.card{border:1px solid var(--line);background:linear-gradient(180deg,#14100a,#0c0a07);padding:18px;margin-top:12px;border-radius:16px}
 .n{color:var(--gold);font-weight:800}
-.cta{margin-top:18px;padding:22px;border-radius:18px;background:linear-gradient(135deg,rgba(42,212,197,.16),rgba(240,193,75,.08));border:1px solid rgba(42,212,197,.28)}
+.cta{margin-top:16px;padding:20px;border-radius:16px;border:1px solid rgba(46,203,255,.28);background:linear-gradient(135deg,rgba(46,203,255,.08),rgba(240,193,75,.08))}
 .cta .btn{margin-top:14px}
-.addr{word-break:break-all;background:#0a0b10;padding:14px;margin:12px 0;font-size:13px;border-radius:12px;border:1px solid var(--line)}
-footer{padding:28px 18px 70px;color:var(--muted)}
-.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#1c2230;border:1px solid var(--line);padding:12px 16px;display:none;z-index:80;border-radius:12px}
+.addr{word-break:break-all;background:#090704;padding:14px;margin:12px 0;font-size:13px;border-radius:10px;border:1px solid var(--line)}
+footer{padding:24px 18px 64px;color:var(--muted)}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#16110a;border:1px solid var(--line);color:var(--gold);padding:12px 16px;display:none;z-index:80;border-radius:12px}
 .save-row{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:8px}
-.save-amt{font-family:Playfair Display,serif;font-size:42px;color:var(--gold)}
-.bar{height:10px;background:#1c2230;margin:12px 0 6px;border-radius:99px;overflow:hidden}
-.bar>i{display:block;height:100%;width:28%;background:linear-gradient(90deg,var(--gold),var(--teal))}
+.save-amt{font-family:Orbitron,sans-serif;font-size:36px;color:var(--gold)}
+.bar{height:8px;background:#1a140c;margin:12px 0 6px;border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;width:28%;background:linear-gradient(90deg,var(--gold),var(--blue))}
 .donor{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
 .donor span{color:var(--gold);font-weight:800}
-.access{margin-top:16px;padding:20px;border-radius:18px;background:rgba(240,193,75,.08);border:1px solid rgba(240,193,75,.22)}
+.access{margin-top:16px;padding:18px;border-radius:16px;border:1px solid var(--line);background:#120e08}
 .access h3{color:var(--gold);margin-bottom:8px}
 .fine{color:var(--muted);font-size:13px;margin-top:8px}
 </style>
@@ -58,39 +58,40 @@ footer{padding:28px 18px 70px;color:var(--muted)}
 <body>
 <header class="nav"><a class="logo" href="#top"><b>CAB</b><i>AI</i></a><button class="burger" onclick="menu()">☰</button></header>
 <div class="menu" id="menu">
-  <a href="#vision" onclick="menu()">Vision</a>
-  <a href="demo.html" onclick="menu()">App demo</a>
-  <a href="#roadmap" onclick="menu()">Roadmap</a>
-  <a href="#support" onclick="menu()">Support</a>
+  <a href="#vision" onclick="menu()">VISION</a>
+  <a href="demo.html" onclick="menu()">APP DEMO</a>
+  <a href="#roadmap" onclick="menu()">ROADMAP</a>
+  <a href="#support" onclick="menu()">SUPPORT</a>
 </div>
 <section class="hero" id="top">
-<div class="pill">COMING SOON</div>
-<div class="kicker">AUTONOMY MEETS COMMUNITY</div>
-<h1><b>CAB</b><i>AI</i></h1>
-<p class="lead">The coin is the beginning. The network is the goal.</p>
-<p class="sub">A community-powered project building toward a real autonomous transportation business.</p>
-<form onsubmit="notify(event)"><input class="mail" id="email" type="email" placeholder="Enter your email" required/><button class="btn btn-gold" type="submit">Get launch updates →</button></form>
+  <div class="hero-card">
+    <img src="https://id-preview--229b5f00-5747-4377-bbf4-e6d7f1926b1c.lovable.app/__l5e/assets-v1/a5e266d2-c0cc-46c2-8cb3-6837f509d0a8/cab-ai-logo-banner.jpeg" alt="CABAI coming soon"/>
+  </div>
+  <div class="kicker">COMING SOON</div>
+  <h1><b>CAB</b><i>AI</i></h1>
+  <p class="lead">The coin is the beginning. The network is the goal.</p>
+  <p class="sub">A community-powered project building toward a real autonomous transportation business.</p>
+  <form onsubmit="notify(event)"><input class="mail" id="email" type="email" placeholder="Enter your email" required/><button class="btn btn-gold" type="submit">Get launch updates →</button></form>
 </section>
-<div class="banner"><img src="https://id-preview--229b5f00-5747-4377-bbf4-e6d7f1926b1c.lovable.app/__l5e/assets-v1/a5e266d2-c0cc-46c2-8cb3-6837f509d0a8/cab-ai-logo-banner.jpeg" alt="CABAI"/></div>
 <section class="section" id="vision">
 <p class="eyebrow">THE THESIS</p>
-<h2>More than a token.<br><span>A road to something real.</span></h2>
+<h2>MORE THAN A TOKEN.<br><span>A ROAD TO SOMETHING REAL.</span></h2>
 <div class="card"><div class="n">01</div><h3>Coin</h3><p class="fine">The spark that funds the first miles.</p></div>
 <div class="cta">
   <p>See a unit get assigned, watch pickup time count down, and follow the cab on the route.</p>
-  <a class="btn btn-teal" href="demo.html">Open the ride demo →</a>
+  <a class="btn btn-gold" href="demo.html">Open the ride demo →</a>
 </div>
 </section>
 <section class="section" id="roadmap">
 <p class="eyebrow">ROADMAP</p>
-<h2>Built in <span>stages.</span></h2>
+<h2>BUILT IN <span>STAGES.</span></h2>
 <div class="card"><div class="n">01</div><h3>Signal</h3><p class="fine">Community, concept demo, and early support.</p></div>
 <div class="card"><div class="n">02</div><h3>Launch</h3><p class="fine">Token and private briefing for early supporters.</p></div>
 <div class="card"><div class="n">03</div><h3>Network</h3><p class="fine">Product path toward a real ride network.</p></div>
 </section>
 <section class="section" id="support">
 <p class="eyebrow">SUPPORT THE BUILD</p>
-<h2>Fuel the <span>next stage.</span></h2>
+<h2>FUEL THE <span>NEXT STAGE.</span></h2>
 <p class="fine">Early contributions are modest by design. They cover development, hosting, and first operating costs — not a fundraising round.</p>
 <div class="card">
 <div class="fine">BUILD MILESTONE</div>
@@ -104,12 +105,11 @@ footer{padding:28px 18px 70px;color:var(--muted)}
 <div class="donor"><b>J. Carter</b><span>0.8 SOL</span></div>
 <div class="donor"><b>wallet…k9Qx</b><span>1.1 SOL</span></div>
 <div class="donor"><b>@RideTheory</b><span>0.5 SOL</span></div>
-<p class="fine">Names appear after a confirmed transfer.</p>
 </div>
 <div class="access">
 <h3>Early-access channel</h3>
-<p>Because support at this stage is small and limited, it is treated as a seat at the table — not a paid product. Contributors who back the project and join Telegram are moved into a private briefing chat. That room receives the fullest launch briefing and the first notice before the public drop. The limited donation window is why early supporters get the launch date first.</p>
-<a class="btn btn-teal" style="margin-top:14px" href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Join Telegram →</a>
+<p>Because support at this stage is small and limited, it is treated as a seat at the table — not a paid product. Contributors who back the project and join Telegram are moved into a private briefing chat. That room receives the fullest launch briefing and the first notice before the public drop.</p>
+<a class="btn btn-gold" style="margin-top:14px" href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Join Telegram →</a>
 </div>
 <div class="card"><strong>Solana</strong><div class="addr">A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5</div><button class="btn btn-gold" type="button" onclick="copyAddr('A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5','Solana')">Copy SOL address</button></div>
 <div class="card"><strong>Ethereum</strong><div class="addr">0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8</div><button class="btn btn-gold" type="button" onclick="copyAddr('0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8','Ethereum')">Copy ETH address</button></div>
