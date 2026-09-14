@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CABAI Ride Network — Concept Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="logo" href="index.html"><span class="gold">CAB</span><span class="cyan">AI</span></a>
+      <nav class="nav-links">
+        <a href="index.html#vision">Vision</a>
+        <a href="demo.html">App demo</a>
+        <a href="index.html#roadmap">Roadmap</a>
+        <a href="index.html#qa">Q&A</a>
+        <a href="index.html#support">Support</a>
+      </nav>
+      <button class="burger" onclick="toggleMenu()">☰</button>
+    </div>
+    <div class="wrap mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Telegram</a>
+      <a href="https://x.com/cabaiyk?s=11&t=5GYd54BVkeEHPgyiqcQrDQ" target="_blank" rel="noopener">X</a>
+    </div>
+  </header>
+  <div class="wrap demo-top">
+    <a href="index.html">← Back to CAB AI</a>
+    <div class="badge">Interactive concept demo</div>
+  </div>
+  <section class="wrap" style="padding-bottom:80px">
+    <div class="ride-card">
+      <div class="ride-hero">
+        <p class="eyebrow">CABAI Ride Network</p>
+        <h1>Plan your ride</h1>
+        <p class="sub">Enter an address to simulate your city.</p>
+      </div>
+      <div class="route">
+        <div class="pin pick">↗</div>
+        <div style="height:2px;background:linear-gradient(90deg,var(--gold),var(--cyan))"></div>
+        <div class="pin drop">📍</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><span>Charge</span><b>94%</b></div>
+        <div class="metric"><span>Pickup in</span><b id="pickupin">—</b></div>
+        <div class="metric"><span>Distance</span><b id="distance">—</b></div>
+        <div class="metric"><span>Trip time</span><b id="triptime">—</b></div>
+      </div>
+      <div class="balance">
+        <div>
+          <span class="fine">Demo balance</span>
+          <div><b>$120.00</b></div>
+        </div>
+        <div>▣</div>
+      </div>
+      <div class="fields">
+        <div>
+          <label>Pickup address</label>
+          <input id="pickup" value="128 Future Ave, Austin, TX" />
+        </div>
+        <div>
+          <label>Destination address</label>
+          <input id="dest" value="500 Congress Ave, Austin, TX" />
+        </div>
+      </div>
+      <div class="cars">
+        <div class="car selected" id="car-one" onclick="selectCar('one')">
+          <div>
+            <strong>CABAI One</strong>
+            <div class="fine">Private autonomous sedan · 4 seats</div>
+          </div>
+          <span>—</span>
+        </div>
+        <div class="car" id="car-xl" onclick="selectCar('xl')">
+          <div>
+            <strong>CABAI XL</strong>
+            <div class="fine">Larger autonomous SUV · 6 seats</div>
+          </div>
+          <span>—</span>
+        </div>
+        <div class="car" id="car-share" onclick="selectCar('share')">
+          <div>
+            <strong>CABAI Share</strong>
+            <div class="fine">Shared route, lower fare · 2 seats</div>
+          </div>
+          <span>—</span>
+        </div>
+      </div>
+      <div class="fare">
+        <span class="fine">Estimated fare</span>
+        <strong id="fare">$0.00</strong>
+      </div>
+      <button class="btn btn-gold order" id="orderLabel" type="button" onclick="orderRide()">ORDER CABAI ONE</button>
+      <p class="sim-note">Simulation only. Addresses are not looked up on a live map, and no real ride, payment, or vehicle is involved.</p>
+    </div>
+  </section>
+  <div class="toast" id="toast"></div>
+  <script src="js/app.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", updateFare);</script>
+</body>
+</html>
