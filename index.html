@@ -21,12 +21,12 @@ a{color:inherit;text-decoration:none}
 .menu.open{display:flex}
 .menu a{font-size:13px;letter-spacing:.14em;color:var(--muted);padding:12px 0;border-bottom:1px solid var(--line);font-family:Audiowide,sans-serif}
 .hero{padding:28px 18px 36px}
-.hero-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#16110a,#0b0906);box-shadow:0 0 40px rgba(240,193,75,.12)}
+.hero-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 0 40px rgba(240,193,75,.12)}
 .hero-card img{width:100%;display:block}
 .kicker{color:var(--gold);letter-spacing:.2em;font-size:11px;margin:18px 0 8px;font-family:Audiowide,sans-serif}
 h1{font-family:Audiowide,sans-serif;font-size:clamp(56px,16vw,88px);line-height:.88;letter-spacing:.06em}
 h1 b{background:linear-gradient(180deg,#ffe08a,#d4a017 55%,#a67c0c);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 #7a5a08) drop-shadow(0 0 18px rgba(240,193,75,.45))}
-h1 i{font-style:normal;color:#2ecbff;text-shadow:0 0 8px #2ecbff,0 0 18px #1aa3ff,0 0 32px rgba(46,203,255,.7);-webkit-text-stroke:1px #7af0ff}
+h1 i{font-style:normal;color:#2ecbff;text-shadow:0 0 8px #2ecbff,0 0 18px #1aa3ff;-webkit-text-stroke:1px #7af0ff}
 .lead{font-size:20px;font-weight:700;margin:14px 0 8px}
 .sub{color:var(--muted);margin-bottom:18px}
 .mail,.btn{width:100%;border-radius:12px;font-family:inherit;font-size:15px;font-weight:800}
@@ -35,11 +35,11 @@ h1 i{font-style:normal;color:#2ecbff;text-shadow:0 0 8px #2ecbff,0 0 18px #1aa3f
 .btn-gold{background:linear-gradient(180deg,#ffd76a,#d4a017);color:#1a1404;box-shadow:0 8px 24px rgba(240,193,75,.28)}
 .section{padding:52px 18px}
 .eyebrow{color:var(--gold);font-size:11px;letter-spacing:.18em;font-family:Audiowide,sans-serif}
-h2{font-family:Audiowide,sans-serif;font-size:clamp(26px,7vw,40px);margin:8px 0 16px;line-height:1.15;color:var(--gold)}
-h2 span{color:var(--blue);text-shadow:0 0 12px rgba(46,203,255,.45)}
+h2{font-family:Audiowide,sans-serif;font-size:clamp(26px,7vw,40px);margin:8px 0 16px;color:var(--gold)}
+h2 span{color:var(--blue)}
 .card{border:1px solid var(--line);background:linear-gradient(180deg,#14100a,#0c0a07);padding:18px;margin-top:12px;border-radius:16px}
 .n{color:var(--gold);font-weight:800}
-.cta{margin-top:16px;padding:20px;border-radius:16px;border:1px solid rgba(46,203,255,.28);background:linear-gradient(135deg,rgba(46,203,255,.08),rgba(240,193,75,.08))}
+.cta{margin-top:16px;padding:20px;border-radius:16px;border:1px solid rgba(46,203,255,.28)}
 .cta .btn{margin-top:14px}
 .addr{word-break:break-all;background:#090704;padding:14px;margin:12px 0;font-size:13px;border-radius:10px;border:1px solid var(--line)}
 footer{padding:24px 18px 64px;color:var(--muted)}
@@ -47,7 +47,7 @@ footer{padding:24px 18px 64px;color:var(--muted)}
 .save-row{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:8px}
 .save-amt{font-family:Audiowide,sans-serif;font-size:36px;color:var(--gold)}
 .bar{height:8px;background:#1a140c;margin:12px 0 6px;border-radius:99px;overflow:hidden}
-.bar>i{display:block;height:100%;width:28%;background:linear-gradient(90deg,var(--gold),var(--blue))}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--blue))}
 .donor{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
 .donor span{color:var(--gold);font-weight:800}
 .access{margin-top:16px;padding:18px;border-radius:16px;border:1px solid var(--line);background:#120e08}
@@ -64,9 +64,7 @@ footer{padding:24px 18px 64px;color:var(--muted)}
   <a href="#support" onclick="menu()">SUPPORT</a>
 </div>
 <section class="hero" id="top">
-  <div class="hero-card">
-    <img src="https://id-preview--229b5f00-5747-4377-bbf4-e6d7f1926b1c.lovable.app/__l5e/assets-v1/a5e266d2-c0cc-46c2-8cb3-6837f509d0a8/cab-ai-logo-banner.jpeg" alt="CABAI coming soon"/>
-  </div>
+  <div class="hero-card"><img src="https://id-preview--229b5f00-5747-4377-bbf4-e6d7f1926b1c.lovable.app/__l5e/assets-v1/a5e266d2-c0cc-46c2-8cb3-6837f509d0a8/cab-ai-logo-banner.jpeg" alt="CABAI coming soon"/></div>
   <div class="kicker">COMING SOON</div>
   <h1><b>CAB</b><i>AI</i></h1>
   <p class="lead">The coin is the beginning. The network is the goal.</p>
@@ -77,10 +75,7 @@ footer{padding:24px 18px 64px;color:var(--muted)}
 <p class="eyebrow">THE THESIS</p>
 <h2>MORE THAN A TOKEN.<br><span>A ROAD TO SOMETHING REAL.</span></h2>
 <div class="card"><div class="n">01</div><h3>Coin</h3><p class="fine">The spark that funds the first miles.</p></div>
-<div class="cta">
-  <p>See a unit get assigned, watch pickup time count down, and follow the cab on the route.</p>
-  <a class="btn btn-gold" href="demo.html">Open the ride demo →</a>
-</div>
+<div class="cta"><p>See a unit get assigned, watch pickup time count down, and follow the cab on the route.</p><a class="btn btn-gold" href="demo.html">Open the ride demo →</a></div>
 </section>
 <section class="section" id="roadmap">
 <p class="eyebrow">ROADMAP</p>
@@ -94,18 +89,12 @@ footer{padding:24px 18px 64px;color:var(--muted)}
 <h2>FUEL THE <span>NEXT STAGE.</span></h2>
 <p class="fine">Early contributions are modest by design. They cover development, hosting, and first operating costs — not a fundraising round.</p>
 <div class="card">
-<div class="fine">BUILD MILESTONE</div>
-<div class="save-row"><div class="save-amt">$5,000</div><div class="fine">$1,420 raised so far</div></div>
-<div class="bar"><i></i></div>
-<p class="fine">$5k for development, design, and launch infrastructure. 28% reserved.</p>
+<div class="fine">BUILD MILESTONE · LIVE FROM WALLETS</div>
+<div class="save-row"><div class="save-amt">$5,000</div><div class="fine" id="raisedLabel">$0.00 raised so far</div></div>
+<div class="bar"><i id="raisedBar" style="width:0%"></i></div>
+<p class="fine" id="raisedNote">$0 of $5,000. Updates when a transfer hits SOL, ETH, Base, or BTC.</p>
 </div>
-<div class="card">
-<strong>Recent supporters</strong>
-<div class="donor"><b>@NovaLine</b><span>2.4 SOL</span></div>
-<div class="donor"><b>J. Carter</b><span>0.8 SOL</span></div>
-<div class="donor"><b>wallet…k9Qx</b><span>1.1 SOL</span></div>
-<div class="donor"><b>@RideTheory</b><span>0.5 SOL</span></div>
-</div>
+<div class="card"><strong>Live supporters</strong><div id="donorList"><p class="fine">No donations yet. Be the first.</p></div></div>
 <div class="access">
 <h3>Early-access channel</h3>
 <p>Because support at this stage is small and limited, it is treated as a seat at the table — not a paid product. Contributors who back the project and join Telegram are moved into a private briefing chat. That room receives the fullest launch briefing and the first notice before the public drop.</p>
@@ -119,10 +108,27 @@ footer{padding:24px 18px 64px;color:var(--muted)}
 <footer>© 2026 CAB AI. Concept-stage project. Not affiliated with Tesla.</footer>
 <div class="toast" id="toast"></div>
 <script>
-function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",2200)}
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",4200)}
 function menu(){document.getElementById("menu").classList.toggle("open")}
 function copyAddr(addr,label){navigator.clipboard.writeText(addr).then(()=>toast(label+" address copied")).catch(()=>toast(addr))}
 function notify(e){e.preventDefault();toast("You're on the launch list.");e.target.reset()}
+const GOAL=5000;
+const W={sol:"A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5",eth:"0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8",btc:"bc1p3npy6hxkawppse00g3y857m8th7hlsx5f7tmtc348favj7s5rrks5t2wat"};
+const seenKey="cabai_seen_donations_v1";
+let seen={};try{seen=JSON.parse(localStorage.getItem(seenKey)||"{}")}catch(e){seen={}}
+let prices={sol:0,eth:0,btc:0};
+function money(n){return "$"+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}
+function shortA(a){return a.slice(0,4)+"\u2026"+a.slice(-4)}
+function mark(id){seen[id]=1;localStorage.setItem(seenKey,JSON.stringify(seen))}
+async function pricesNow(){const r=await fetch("https://api.coingecko.com/api/v3/simple/price?ids=solana,ethereum,bitcoin&vs_currencies=usd");const j=await r.json();prices.sol=j.solana&&j.solana.usd||0;prices.eth=j.ethereum&&j.ethereum.usd||0;prices.btc=j.bitcoin&&j.bitcoin.usd||0}
+function rpc(url,method,params){return fetch(url,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({jsonrpc:"2.0",id:1,method,params})}).then(r=>r.json())}
+async function solIn(){const items=[];let usd=0;try{const sigs=await rpc("https://solana-rpc.publicnode.com","getSignaturesForAddress",[W.sol,{limit:20}]);const list=(sigs.result||[]).filter(s=>!s.err).slice(0,12);for(const s of list){const tx=await rpc("https://solana-rpc.publicnode.com","getTransaction",[s.signature,{encoding:"jsonParsed",maxSupportedTransactionVersion:0}]);const t=tx.result;if(!t||!t.meta)continue;const keys=(t.transaction.message.accountKeys||[]).map(k=>typeof k==="string"?k:k.pubkey);const i=keys.indexOf(W.sol);if(i<0)continue;const lamports=(t.meta.postBalances[i]||0)-(t.meta.preBalances[i]||0);if(lamports<=5000)continue;const sol=lamports/1e9;const val=sol*prices.sol;usd+=val;const from=keys.find(k=>k!==W.sol)||"wallet";items.push({id:"sol-"+s.signature,label:shortA(from),amt:sol.toFixed(3)+" SOL",usd:val,chain:"SOL"})}}catch(e){}return{usd,items}}
+async function evmBal(url,chain){try{const j=await rpc(url,"eth_getBalance",[W.eth,"latest"]);const wei=parseInt(j.result,16);if(!wei)return{usd:0,items:[]};const eth=wei/1e18;const val=eth*prices.eth;return{usd:val,items:val>0.5?[{id:chain+"-bal",label:chain+" wallet",amt:eth.toFixed(4)+" ETH",usd:val,chain}]:[]}}catch(e){return{usd:0,items:[]}}}
+async function btcIn(){try{const r=await fetch("https://blockstream.info/api/address/"+W.btc);const j=await r.json();const funded=((j.chain_stats&&j.chain_stats.funded_txo_sum)||0)+((j.mempool_stats&&j.mempool_stats.funded_txo_sum)||0);const btc=funded/1e8;const val=btc*prices.btc;return{usd:val,items:val>1?[{id:"btc-in",label:"BTC wallet",amt:btc.toFixed(6)+" BTC",usd:val,chain:"BTC"}]:[]}}catch(e){return{usd:0,items:[]}}}
+function render(total,items){const pct=Math.max(0,Math.min(100,(total/GOAL)*100));document.getElementById("raisedLabel").textContent=money(total)+" raised so far";document.getElementById("raisedBar").style.width=pct.toFixed(1)+"%";document.getElementById("raisedNote").textContent=money(total)+" of $5,000 synced from your wallets. "+pct.toFixed(1)+"% reserved.";const box=document.getElementById("donorList");if(!items.length){box.innerHTML='<p class="fine">No donations yet. Be the first.</p>';return}box.innerHTML=items.slice(0,8).map(d=>'<div class="donor"><b>'+d.label+'</b><span>'+d.amt+'</span></div>').join("")}
+async function refreshDonations(){try{await pricesNow()}catch(e){}const [sol,eth,base,btc]=await Promise.all([solIn(),evmBal("https://ethereum.publicnode.com","ETH"),evmBal("https://base.publicnode.com","BASE"),btcIn()]);const items=[].concat(sol.items,eth.items,base.items,btc.items);const total=sol.usd+eth.usd+base.usd+btc.usd;render(total,items);items.forEach(d=>{if(!seen[d.id]&&d.usd>=1){mark(d.id);toast("New support \u00b7 "+d.amt+" \u00b7 "+money(d.usd))}else mark(d.id)})}
+refreshDonations();
+setInterval(refreshDonations,20000);
 </script>
 </body>
 </html>
