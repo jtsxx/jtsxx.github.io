@@ -68,9 +68,6 @@ h2 span{color:var(--cyan)}
 .order,.ghost{width:calc(100% - 32px);margin:8px 16px}
 .ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.14);padding:14px}
 .note{color:#6f7780;font-size:12px;padding:0 16px 18px}
-.faq button{width:100%;text-align:left;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.08);color:#fff;padding:16px 2px}
-.faq .a{display:none;color:var(--muted);padding:0 2px 14px}
-.faq.open .a{display:block}
 .addr{word-break:break-all;background:#08090c;padding:14px;margin:12px 0;font-size:13px}
 footer{padding:28px 18px 70px;color:var(--muted)}
 .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#15171c;padding:12px 16px;display:none;z-index:80}
@@ -168,14 +165,21 @@ footer{padding:28px 18px 70px;color:var(--muted)}
 <p>Because support at this stage is small and limited, it is treated as a seat at the table — not a paid product. Contributors who back the project and join Telegram are moved into a private briefing chat. That room receives the fullest launch briefing and the first notice before the public drop. No extra payment is required for that briefing. The limited size of the donation window is exactly why early supporters are given the launch date first.</p>
 <a class="tg" href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Join Telegram → private briefing</a>
 </div>
-<div class="box"><strong>SOLANA WALLET</strong><div class="addr">A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5</div>
-<button class="gold" type="button" onclick="copy()">COPY ADDRESS</button>
-<p class="fine">Send only what you can afford to lose. This is a concept-stage project, not an offering of securities.</p></div>
+<div class="box">
+<strong>SOLANA</strong>
+<div class="addr">A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5</div>
+<button class="gold" type="button" onclick="copyAddr('A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5','Solana')">COPY SOL ADDRESS</button>
+</div>
+<div class="box">
+<strong>ETHEREUM</strong>
+<div class="addr">0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8</div>
+<button class="gold" type="button" onclick="copyAddr('0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8','Ethereum')">COPY ETH ADDRESS</button>
+<p class="fine">Send only what you can afford to lose. This is a concept-stage project, not an offering of securities.</p>
+</div>
 </section>
 <footer>© 2026 CAB AI. Concept-stage project. Not affiliated with Tesla.</footer>
 <div class="toast" id="toast"></div>
 <script>
-const W="A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5";
 const names={one:"CABAI One",xl:"CABAI XL",share:"CABAI Share"};
 const rates={one:18.4,xl:24.9,share:9.6};
 let v="one", phase="idle", fare=0, miles=0, tripMin=0, etaSec=0, left=0, tick=null, moveT=null, cabFrom=0.02;
@@ -184,7 +188,7 @@ const cab=document.getElementById("cab");
 const pathLen=road.getTotalLength();
 function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",2200)}
 function menu(){document.getElementById("menu").classList.toggle("open")}
-function copy(){navigator.clipboard.writeText(W).then(()=>toast("Wallet copied")).catch(()=>toast(W))}
+function copyAddr(addr,label){navigator.clipboard.writeText(addr).then(()=>toast(label+" address copied")).catch(()=>toast(addr))}
 function notify(e){e.preventDefault();toast("You're on the launch list.");e.target.reset()}
 function hash(s){let n=0;for(let i=0;i<s.length;i++)n=(n*31+s.charCodeAt(i))>>>0;return n}
 function fmt(sec){sec=Math.max(0,Math.ceil(sec));return String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0")}
