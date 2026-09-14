@@ -1,106 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CABAI Ride Network — Concept Demo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CAB AI — Ride Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Sora:wght@400;600;700&family=Syne:wght@800&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#f5c448;--cyan:#3ad4ff;--bg:#07080a;--muted:#9aa3ad}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Sora,system-ui,sans-serif;background:var(--bg);color:#f3efe6;line-height:1.55}
+a{color:inherit;text-decoration:none}
+.nav{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:rgba(7,8,10,.92)}
+.logo{font-family:Orbitron,sans-serif;font-weight:800;letter-spacing:.18em}
+.logo b{color:var(--gold)}.logo i{color:var(--cyan);font-style:normal}
+.back{font-size:12px;letter-spacing:.12em;color:#b8c0c8;font-family:Orbitron,sans-serif}
+.page{padding:22px 18px 70px}
+.eyebrow{color:var(--gold);font-size:11px;letter-spacing:.18em;font-family:Orbitron,sans-serif}
+h1{font-family:Syne,sans-serif;font-size:clamp(28px,8vw,42px);margin:8px 0 16px}
+.ride{border:1px solid rgba(245,196,72,.2);background:#0b0d11}
+.status{display:flex;align-items:center;gap:8px;padding:16px 16px 0;color:var(--cyan);font-size:12px}
+.status i{width:8px;height:8px;border-radius:50%;background:#3dff8b;flex-shrink:0}
+.clock{margin:12px 16px 0;padding:16px;border:1px solid rgba(245,196,72,.4);background:#120e06;text-align:center}
+.clock label{display:block;font-family:Orbitron,sans-serif;letter-spacing:.16em;font-size:11px;color:var(--gold)}
+.clock strong{display:block;font-family:Orbitron,sans-serif;font-size:52px;color:#fff}
+.clock em{font-style:normal;color:var(--cyan);font-size:13px}
+.mapwrap{margin:12px 16px;height:220px;border:1px solid rgba(58,212,255,.3);background:#081018;position:relative;overflow:hidden}
+.mapwrap svg{width:100%;height:100%;display:block}
+.pinlab{position:absolute;font-size:10px;font-family:Orbitron,sans-serif;background:rgba(0,0,0,.65);padding:3px 6px;pointer-events:none}
+#labYou{left:5%;bottom:14%}
+#labDest{right:5%;top:10%;color:var(--cyan)}
+#labCab{color:var(--gold)}
+.metrics{display:grid;grid-template-columns:1fr 1fr}
+.metric{padding:14px 16px;border-top:1px solid rgba(245,196,72,.12)}
+.metric span{display:block;color:var(--muted);font-size:12px}
+.metric b{color:var(--cyan);font-size:20px}
+.bal{padding:16px;display:flex;justify-content:space-between;border-top:1px solid rgba(245,196,72,.12)}
+.bal b{color:var(--gold);font-size:28px}
+.fields,.log,.fare{padding:12px 16px}
+.fields label{display:block;font-size:11px;letter-spacing:.12em;color:var(--muted);margin:8px 0 4px}
+.fields input{width:100%;background:#0a0b0e;border:1px solid rgba(245,196,72,.25);color:#fff;padding:12px}
+.choice{margin:8px 16px;padding:14px;border:1px solid rgba(255,255,255,.08)}
+.choice.on{border-color:var(--gold);background:rgba(245,196,72,.06)}
+.log{margin:0 16px 12px;background:#08090c;border:1px solid rgba(58,212,255,.15);min-height:64px}
+.log b{display:block;color:var(--gold);font-size:11px;font-family:Orbitron,sans-serif}
+.gold,.ghost{width:calc(100% - 32px);margin:8px 16px;font-weight:800;padding:15px}
+.gold{background:var(--gold);color:#14110a;border:0}
+.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.14)}
+.note{color:#6f7780;font-size:12px;padding:0 16px 18px}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#15171c;padding:12px 16px;display:none;z-index:80}
+.busy{opacity:.55;pointer-events:none}
+.fine{color:#6f7780;font-size:12px}
+</style>
 </head>
 <body>
-  <div class="bg-grid"></div>
-  <header class="nav">
-    <div class="wrap nav-inner">
-      <a class="logo" href="index.html"><span class="gold">CAB</span><span class="cyan">AI</span></a>
-      <nav class="nav-links">
-        <a href="index.html#vision">Vision</a>
-        <a href="demo.html">App demo</a>
-        <a href="index.html#roadmap">Roadmap</a>
-        <a href="index.html#qa">Q&A</a>
-        <a href="index.html#support">Support</a>
-      </nav>
-      <button class="burger" onclick="toggleMenu()">☰</button>
+<header class="nav">
+  <a class="logo" href="index.html"><b>CAB</b><i>AI</i></a>
+  <a class="back" href="index.html">← HOME</a>
+</header>
+<div class="page">
+  <p class="eyebrow">INTERACTIVE CONCEPT DEMO</p>
+  <h1>Ride network</h1>
+  <div class="ride">
+    <div class="status"><i></i><span id="livetext">NETWORK ONLINE · SIMULATION</span></div>
+    <div class="clock">
+      <label id="clocklab">ESTIMATED ARRIVAL</label>
+      <strong id="clock">--:--</strong>
+      <em id="clocksub">Enter a pickup to match a unit</em>
     </div>
-    <div class="wrap mobile-menu" id="mobileMenu">
-      <a href="index.html">Home</a>
-      <a href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Telegram</a>
-      <a href="https://x.com/cabaiyk?s=11&t=5GYd54BVkeEHPgyiqcQrDQ" target="_blank" rel="noopener">X</a>
+    <div class="mapwrap">
+      <svg viewBox="0 0 320 220" id="mapsvg">
+        <defs>
+          <pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M20 0H0V20" fill="none" stroke="rgba(255,255,255,.07)"/>
+          </pattern>
+        </defs>
+        <rect width="320" height="220" fill="url(#g)"/>
+        <path id="road" d="M28 176 C 78 176 96 128 128 118 C 168 106 188 92 212 70 C 236 48 258 40 292 44" fill="none" stroke="rgba(58,212,255,.42)" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="28" cy="176" r="7" fill="#f5c448"/>
+        <circle cx="292" cy="44" r="7" fill="#3ad4ff"/>
+        <g id="cab">
+          <rect x="-13" y="-7" width="26" height="14" rx="3" fill="#f5c448"/>
+          <rect x="4" y="-4" width="7" height="8" rx="1" fill="#1b1406"/>
+        </g>
+      </svg>
+      <div class="pinlab" id="labYou">YOU</div>
+      <div class="pinlab" id="labDest">DEST</div>
+      <div class="pinlab" id="labCab">CAB</div>
     </div>
-  </header>
-  <div class="wrap demo-top">
-    <a href="index.html">← Back to CAB AI</a>
-    <div class="badge">Interactive concept demo</div>
+    <div class="metrics">
+      <div class="metric"><span>Charge</span><b id="charge">94%</b></div>
+      <div class="metric"><span>Distance</span><b id="distance">—</b></div>
+      <div class="metric"><span>Trip time</span><b id="triptime">—</b></div>
+      <div class="metric"><span>Unit</span><b id="unit">—</b></div>
+    </div>
+    <div class="bal">
+      <div><span class="fine">Demo balance</span><div><b id="bal">$120.00</b></div></div>
+      <div class="fine" id="phase">Waiting</div>
+    </div>
+    <div class="fields" id="formblock">
+      <label>PICKUP ADDRESS</label>
+      <input id="pickup" value="128 Future Ave, Austin, TX"/>
+      <label>DESTINATION ADDRESS</label>
+      <input id="dest" value="500 Congress Ave, Austin, TX"/>
+    </div>
+    <div id="fleet">
+      <div class="choice on" id="car-one" onclick="pick('one')"><strong>CABAI One</strong><div class="fine">Private sedan · 4 seats</div></div>
+      <div class="choice" id="car-xl" onclick="pick('xl')"><strong>CABAI XL</strong><div class="fine">SUV · 6 seats</div></div>
+      <div class="choice" id="car-share" onclick="pick('share')"><strong>CABAI Share</strong><div class="fine">Shared · 2 seats</div></div>
+    </div>
+    <div class="fare"><span class="fine">Estimated fare</span> <strong id="fare">$0.00</strong></div>
+    <div class="log" id="log"><b>DISPATCH</b>Waiting for a request.</div>
+    <button class="gold" id="mainbtn" type="button" onclick="step()">FIND CLOSEST UNIT</button>
+    <button class="ghost" type="button" onclick="resetDemo()">Reset simulation</button>
+    <p class="note">Simulation only. Arrival times are unique per address pair and compressed for the demo. Not live GPS.</p>
   </div>
-  <section class="wrap" style="padding-bottom:80px">
-    <div class="ride-card">
-      <div class="ride-hero">
-        <p class="eyebrow">CABAI Ride Network</p>
-        <h1>Plan your ride</h1>
-        <p class="sub">Enter an address to simulate your city.</p>
-      </div>
-      <div class="route">
-        <div class="pin pick">↗</div>
-        <div style="height:2px;background:linear-gradient(90deg,var(--gold),var(--cyan))"></div>
-        <div class="pin drop">📍</div>
-      </div>
-      <div class="metrics">
-        <div class="metric"><span>Charge</span><b>94%</b></div>
-        <div class="metric"><span>Pickup in</span><b id="pickupin">—</b></div>
-        <div class="metric"><span>Distance</span><b id="distance">—</b></div>
-        <div class="metric"><span>Trip time</span><b id="triptime">—</b></div>
-      </div>
-      <div class="balance">
-        <div>
-          <span class="fine">Demo balance</span>
-          <div><b>$120.00</b></div>
-        </div>
-        <div>▣</div>
-      </div>
-      <div class="fields">
-        <div>
-          <label>Pickup address</label>
-          <input id="pickup" value="128 Future Ave, Austin, TX" />
-        </div>
-        <div>
-          <label>Destination address</label>
-          <input id="dest" value="500 Congress Ave, Austin, TX" />
-        </div>
-      </div>
-      <div class="cars">
-        <div class="car selected" id="car-one" onclick="selectCar('one')">
-          <div>
-            <strong>CABAI One</strong>
-            <div class="fine">Private autonomous sedan · 4 seats</div>
-          </div>
-          <span>—</span>
-        </div>
-        <div class="car" id="car-xl" onclick="selectCar('xl')">
-          <div>
-            <strong>CABAI XL</strong>
-            <div class="fine">Larger autonomous SUV · 6 seats</div>
-          </div>
-          <span>—</span>
-        </div>
-        <div class="car" id="car-share" onclick="selectCar('share')">
-          <div>
-            <strong>CABAI Share</strong>
-            <div class="fine">Shared route, lower fare · 2 seats</div>
-          </div>
-          <span>—</span>
-        </div>
-      </div>
-      <div class="fare">
-        <span class="fine">Estimated fare</span>
-        <strong id="fare">$0.00</strong>
-      </div>
-      <button class="btn btn-gold order" id="orderLabel" type="button" onclick="orderRide()">ORDER CABAI ONE</button>
-      <p class="sim-note">Simulation only. Addresses are not looked up on a live map, and no real ride, payment, or vehicle is involved.</p>
-    </div>
-  </section>
-  <div class="toast" id="toast"></div>
-  <script src="js/app.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", updateFare);</script>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const names = {one:"CABAI One", xl:"CABAI XL", share:"CABAI Share"};
+const rates = {one:18.4, xl:24.9, share:9.6};
+let v = "one";
+let phase = "idle";
+let fare = 0, miles = 0, tripMin = 0, pickupMin = 0;
+let raf = 0;
+let progress = 0;
+const PICKUP_END = 0.46;
+const road = document.getElementById("road");
+const cab = document.getElementById("cab");
+let pathLen = 1;
+function toast(t){
+  const e = document.getElementById("toast");
+  e.textContent = t;
+  e.style.display = "block";
+  setTimeout(() => e.style.display = "none", 2200);
+}
+function hash(s){
+  let n = 2166136261;
+  for (let i = 0; i < s.length; i++) n = Math.imul(n ^ s.charCodeAt(i), 16777619);
+  return n >>> 0;
+}
+function fmtClock(totalSec){
+  totalSec = Math.max(0, Math.ceil(totalSec));
+  const m = Math.floor(totalSec / 60);
+  const s = totalSec % 60;
+  return String(m).padStart(2,"0") + ":" + String(s).padStart(2,"0");
+}
+function setClock(sec, lab, sub){
+  document.getElementById("clock").textContent = fmtClock(sec);
+  if (lab) document.getElementById("clocklab").textContent = lab;
+  if (sub) document.getElementById("clocksub").textContent = sub;
+}
+function stopAnim(){
+  if (raf) cancelAnimationFrame(raf);
+  raf = 0;
+}
+function placeCab(pct){
+  progress = Math.max(0, Math.min(1, pct));
+  const d = progress * pathLen;
+  const p = road.getPointAtLength(d);
+  const back = Math.max(0, d - 8);
+  const fwd = Math.min(pathLen, d + 8);
+  const a = road.getPointAtLength(back);
+  const b = road.getPointAtLength(fwd);
+  const ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
+  cab.setAttribute("transform", "translate(" + p.x + "," + p.y + ") rotate(" + ang + ")");
+  const lab = document.getElementById("labCab");
+  lab.style.left = (p.x / 320 * 100) + "%";
+  lab.style.top = (p.y / 220 * 100) + "%";
+}
+function easeInOut(t){
+  return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+}
+function animateTo(from, to, realMs, onTick, onDone){
+  stopAnim();
+  const start = performance.now();
+  function frame(now){
+    const raw = Math.min(1, (now - start) / realMs);
+    const t = easeInOut(raw);
+    placeCab(from + (to - from) * t);
+    onTick(raw, t);
+    if (raw < 1) raf = requestAnimationFrame(frame);
+    else {
+      placeCab(to);
+      onTick(1, 1);
+      if (onDone) onDone();
+    }
+  }
+  raf = requestAnimationFrame(frame);
+}
+function estimate(){
+  const a = document.getElementById("pickup").value.trim();
+  const b = document.getElementById("dest").value.trim();
+  const h = hash(a + "|" + b + "|" + v);
+  const h2 = hash(b + "|" + a);
+  miles = 2.1 + (h % 1650) / 100;
+  tripMin = 7 + (h2 % 17);
+  pickupMin = 3 + (h % 10);
+  fare = +(rates[v] + miles * 1.28).toFixed(2);
+  document.getElementById("fare").textContent = "$" + fare.toFixed(2);
+  document.getElementById("distance").textContent = miles.toFixed(1) + " mi";
+  document.getElementById("triptime").textContent = tripMin + " min";
+}
+function pick(id){
+  if (phase !== "idle" && phase !== "found") return;
+  v = id;
+  document.querySelectorAll(".choice").forEach(c => c.classList.remove("on"));
+  document.getElementById("car-" + id).classList.add("on");
+  estimate();
+}
+function log(title, msg){ document.getElementById("log").innerHTML = "<b>" + title + "</b>" + msg; }
+function live(t){ document.getElementById("livetext").textContent = t; }
+function step(){
+  if (!document.getElementById("pickup").value.trim() || !document.getElementById("dest").value.trim()){
+    toast("Enter both addresses");
+    return;
+  }
+  estimate();
+  if (phase === "idle") searchUnits();
+  else if (phase === "found") confirmRide();
+}
+function searchUnits(){
+  phase = "search";
+  document.getElementById("formblock").classList.add("busy");
+  document.getElementById("fleet").classList.add("busy");
+  document.getElementById("mainbtn").disabled = true;
+  live("SEARCHING NEAREST UNIT");
+  setClock(0, "MATCHING", "Ranking closest available cabs");
+  const a = document.getElementById("pickup").value.trim();
+  const unit = "CAI-" + (140 + hash(a + v) % 760);
+  const lines = [
+    "Scanning live inventory…",
+    "Filtering units above 80% charge…",
+    "Ranking by travel time to your pin…",
+    "Found available cab. Heading toward you now."
+  ];
+  let n = 0;
+  const iv = setInterval(() => {
+    n++;
+    log("DISPATCH", lines[n - 1]);
+    if (n === 4){
+      clearInterval(iv);
+      phase = "found";
+      document.getElementById("unit").textContent = unit;
+      document.getElementById("charge").textContent = (84 + hash(a) % 14) + "%";
+      document.getElementById("phase").textContent = "Unit locked";
+      live("FOUND AVAILABLE CAB · HEADING TOWARD YOU NOW");
+      setClock(pickupMin * 60, "PICKUP ARRIVES IN", names[v] + " " + unit + " assigned");
+      log("MATCH", "Found available cab heading toward you now. " + unit + " is " + pickupMin + " min from pickup.");
+      document.getElementById("mainbtn").disabled = false;
+      document.getElementById("mainbtn").textContent = "ORDER " + names[v].toUpperCase();
+    }
+  }, 700);
+}
+function confirmRide(){
+  phase = "enroute";
+  document.getElementById("mainbtn").disabled = true;
+  document.getElementById("phase").textContent = "Inbound";
+  live("FOUND AVAILABLE CAB · HEADING TOWARD YOU NOW");
+  log("EN ROUTE", "Cab is moving to your pin. Arrival time is unique to this address.");
+  const displayPickup = pickupMin * 60;
+  const realMs = 14000 + (hash(document.getElementById("pickup").value) % 4000);
+  animateTo(progress, PICKUP_END, realMs, function(raw){
+    const remain = displayPickup * (1 - raw);
+    setClock(remain, "PICKUP ARRIVES IN", "Cab heading toward you now");
+  }, startTrip);
+}
+function startTrip(){
+  phase = "trip";
+  live("ON TRIP");
+  document.getElementById("phase").textContent = "On trip";
+  log("TRIP", "Picked up. En route to destination.");
+  const displayTrip = tripMin * 60;
+  const realMs = 16000 + (hash(document.getElementById("dest").value) % 5000);
+  animateTo(PICKUP_END, 1, realMs, function(raw){
+    const remain = displayTrip * (1 - raw);
+    setClock(remain, "ARRIVAL AT DEST IN", "You are in the vehicle");
+    document.getElementById("triptime").textContent = Math.max(0, Math.ceil(remain / 60)) + " min";
+  }, arrive);
+}
+function arrive(){
+  phase = "done";
+  placeCab(1);
+  live("TRIP COMPLETE");
+  document.getElementById("phase").textContent = "Arrived";
+  document.getElementById("triptime").textContent = "0 min";
+  setClock(0, "ARRIVED", "Destination reached");
+  document.getElementById("bal").textContent = "$" + Math.max(0, 120 - fare).toFixed(2);
+  log("COMPLETE", "Arrived. Demo fare $" + fare.toFixed(2) + " deducted.");
+  document.getElementById("mainbtn").textContent = "SIMULATION COMPLETE";
+  toast("Trip complete — simulation only");
+}
+function resetDemo(){
+  stopAnim();
+  phase = "idle";
+  document.getElementById("formblock").classList.remove("busy");
+  document.getElementById("fleet").classList.remove("busy");
+  document.getElementById("mainbtn").disabled = false;
+  document.getElementById("mainbtn").textContent = "FIND CLOSEST UNIT";
+  document.getElementById("unit").textContent = "—";
+  document.getElementById("bal").textContent = "$120.00";
+  document.getElementById("phase").textContent = "Waiting";
+  live("NETWORK ONLINE · SIMULATION");
+  document.getElementById("clock").textContent = "--:--";
+  document.getElementById("clocklab").textContent = "ESTIMATED ARRIVAL";
+  document.getElementById("clocksub").textContent = "Enter a pickup to match a unit";
+  placeCab(0);
+  estimate();
+  log("DISPATCH", "Waiting for a request.");
+}
+document.getElementById("pickup").addEventListener("input", estimate);
+document.getElementById("dest").addEventListener("input", estimate);
+pathLen = road.getTotalLength();
+placeCab(0);
+estimate();
+</script>
 </body>
 </html>
