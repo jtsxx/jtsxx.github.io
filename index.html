@@ -1,142 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CABAI — The coin is the beginning</title>
-  <meta name="description" content="CABAI is a community-powered project building step by step toward a real autonomous transportation business." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CABAI — The coin is the beginning</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Sora:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{--gold:#f5c448;--cyan:#3ad4ff;--text:#f3efe6;--muted:#9aa3ad;--line:rgba(245,196,72,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Sora,system-ui,sans-serif;background:#07080a;color:var(--text);line-height:1.6}
+.bg{position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 500px at 80% -10%,rgba(58,212,255,.08),transparent 55%),radial-gradient(700px 400px at 10% 20%,rgba(245,196,72,.07),transparent 50%),#07080a}
+.wrap{width:min(1120px,calc(100% - 32px));margin:0 auto;position:relative;z-index:1}
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);background:rgba(7,8,10,.8);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:Outfit,sans-serif;font-weight:800;font-size:22px;letter-spacing:.04em;text-decoration:none;color:inherit}
+.gold{color:var(--gold)}.cyan{color:var(--cyan)}
+.nav-links{display:none;gap:18px;font-size:14px;color:var(--muted)}
+.nav-links a{color:inherit;text-decoration:none}
+.burger{width:42px;height:42px;border:1px solid var(--line);background:transparent;color:#fff;border-radius:10px}
+.mobile{display:none;flex-direction:column;gap:12px;padding:0 16px 16px}
+.mobile.open{display:flex}
+.mobile a{color:var(--muted);text-decoration:none;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.hero{padding:28px 0 64px}
+.card{border:1px solid var(--line);border-radius:24px;padding:28px 22px 32px;background:linear-gradient(180deg,rgba(12,14,18,.7),rgba(7,8,10,.9));box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.pill{display:inline-block;border:1px solid rgba(245,196,72,.35);background:rgba(245,196,72,.08);color:var(--gold);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;border-radius:999px;font-weight:700}
+.kicker{color:var(--cyan);letter-spacing:.16em;font-size:12px;font-weight:700;margin:18px 0 8px;text-transform:uppercase}
+h1{font-family:Outfit,sans-serif;font-size:clamp(52px,16vw,92px);line-height:.9;letter-spacing:-.03em;margin:0 0 16px}
+.lead{font-size:22px;font-weight:600}
+.sub{color:var(--muted);margin:12px 0 22px}
+input,button{font-family:inherit}
+input[type=email],.fields input{width:100%;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.1);color:#fff;padding:14px 16px;border-radius:12px;margin-bottom:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:12px;font-weight:700;padding:14px 18px;text-decoration:none;cursor:pointer}
+.btn-gold{background:var(--gold);color:#14110a;width:100%}
+.fine{color:#6f7780;font-size:12px;margin-top:8px}
+.coming{margin-top:22px;border-radius:16px;border:1px solid rgba(245,196,72,.25);background:linear-gradient(90deg,#0d0b06,#0b1c24);padding:16px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.coming strong{letter-spacing:.16em;color:var(--gold);font-size:11px}
+.soon{color:var(--cyan);font-size:12px;letter-spacing:.16em}
+.section{padding:56px 0}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+h2{font-family:Outfit,sans-serif;font-size:clamp(28px,8vw,48px);line-height:1.05;margin:8px 0 14px}
+.step,.road,.wallet,.honest,.ride{border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:12px;background:rgba(255,255,255,.02)}
+.step{display:grid;grid-template-columns:56px 1fr}
+.n{color:var(--gold);font-weight:800}
+.demo-banner{margin-top:20px;border-radius:16px;border-left:3px solid var(--cyan);background:linear-gradient(90deg,rgba(14,36,44,.85),rgba(10,16,20,.9));padding:22px}
+.demo-banner h3{color:var(--cyan);margin-bottom:8px}
+.demo-banner .btn{background:#111;color:#fff;border:1px solid rgba(255,255,255,.12);width:auto;margin-top:12px}
+.faq button{width:100%;text-align:left;background:none;border:0;border-bottom:1px solid rgba(255,255,255,.08);color:#fff;padding:16px 4px;font-size:16px}
+.faq .a{display:none;color:var(--muted);padding:0 4px 16px}
+.faq.open .a{display:block}
+.addr{word-break:break-all;background:#08090c;border:1px solid rgba(255,255,255,.08);padding:14px;border-radius:12px;margin:12px 0;font-size:13px;font-family:ui-monospace,monospace}
+.wallet-actions{display:grid;gap:10px}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.14)}
+footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 0 50px;color:var(--muted)}
+.socials a{color:inherit;margin-right:10px}
+.metrics{display:grid;grid-template-columns:1fr 1fr}
+.metric{padding:14px;border-top:1px solid var(--line)}
+.metric span{display:block;color:var(--muted);font-size:12px}
+.metric b{color:var(--cyan);font-size:18px}
+.car{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;margin-top:8px}
+.car.selected{border-color:var(--gold)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#15171c;border:1px solid var(--line);padding:12px 16px;border-radius:12px;display:none;z-index:80}
+</style>
 </head>
 <body>
-  <div class="bg-grid"></div>
-  <header class="nav">
-    <div class="wrap nav-inner">
-      <a class="logo" href="#top"><span class="gold">CAB</span><span class="cyan">AI</span></a>
-      <nav class="nav-links">
-        <a href="#vision">Vision</a>
-        <a href="demo.html">App demo</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="#qa">Q&A</a>
-        <a href="#support">Support</a>
-        <a class="nav-cta" href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Telegram</a>
-      </nav>
-      <button class="burger" onclick="toggleMenu()" aria-label="Menu">☰</button>
+<div class="bg"></div>
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top"><span class="gold">CAB</span><span class="cyan">AI</span></a>
+    <button class="burger" onclick="toggleMenu()">☰</button>
+  </div>
+  <div class="wrap mobile" id="mobileMenu">
+    <a href="#vision" onclick="toggleMenu()">Vision</a>
+    <a href="#demo" onclick="toggleMenu()">App demo</a>
+    <a href="#roadmap" onclick="toggleMenu()">Roadmap</a>
+    <a href="#qa" onclick="toggleMenu()">Q&A</a>
+    <a href="#support" onclick="toggleMenu()">Support</a>
+    <a href="https://t.me/CABAIlykk" target="_blank">Telegram</a>
+  </div>
+</header>
+<main id="top" class="wrap">
+  <section class="hero">
+    <div class="card">
+      <div class="pill">Transmission incoming · Coming soon</div>
+      <div class="kicker">Autonomy meets community</div>
+      <h1><span class="gold">CAB</span><span class="cyan">AI</span></h1>
+      <p class="lead">The coin is the beginning.<br>The transportation network is the goal.</p>
+      <p class="sub">A community-powered project building toward a real autonomous transportation business.</p>
+      <form onsubmit="notifyMe(event)">
+        <input id="email" type="email" placeholder="Enter your email" required />
+        <button class="btn btn-gold" type="submit">NOTIFY ME →</button>
+        <p class="fine">Launch news only. No noise.</p>
+      </form>
+      <div class="coming"><div><strong>CABAI RIDE NETWORK</strong><div class="logo"><span class="gold">CAB</span><span class="cyan">AI</span></div></div><div class="soon">COMING SOON</div></div>
     </div>
-    <div class="wrap mobile-menu" id="mobileMenu">
-      <a href="#vision" onclick="toggleMenu()">Vision</a>
-      <a href="demo.html">App demo</a>
-      <a href="#roadmap" onclick="toggleMenu()">Roadmap</a>
-      <a href="#qa" onclick="toggleMenu()">Q&A</a>
-      <a href="#support" onclick="toggleMenu()">Support</a>
-      <a href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Telegram</a>
-      <a href="https://x.com/cabaiyk?s=11&t=5GYd54BVkeEHPgyiqcQrDQ" target="_blank" rel="noopener">X</a>
+  </section>
+  <section class="section" id="vision">
+    <p class="eyebrow">The thesis</p>
+    <h2>More than a token.<br><span class="cyan">A road to something real.</span></h2>
+    <div class="step"><div class="n">01</div><div><h3>COIN</h3><p class="sub">The spark</p></div></div>
+    <div class="step"><div class="n">02</div><div><h3>COMMUNITY</h3><p class="sub">The foundation</p></div></div>
+    <div class="step"><div class="n">03</div><div><h3>APP</h3><p class="sub">The platform</p></div></div>
+    <div class="step"><div class="n">04</div><div><h3>FLEET</h3><p class="sub">The operation</p></div></div>
+    <div class="step"><div class="n">05</div><div><h3>NETWORK</h3><p class="sub">The goal</p></div></div>
+    <div class="demo-banner">
+      <h3>See the transportation vision in motion.</h3>
+      <p class="sub">Book a simulated CAB AI robotaxi with demo credits.</p>
+      <a class="btn" href="#demo">Launch app demo →</a>
     </div>
-  </header>
-  <main id="top">
-    <section class="hero wrap">
-      <div class="hero-card">
-        <div class="hero-media"></div>
-        <div class="hero-inner">
-          <div class="pill">Transmission incoming · Coming soon</div>
-          <div class="kicker">Autonomy meets community</div>
-          <h1><span class="gold">CAB</span><span class="cyan">AI</span></h1>
-          <p class="lead">The coin is the beginning.<br>The transportation network is the goal.</p>
-          <p class="sub">A community-powered project building step by step toward a real autonomous transportation business.</p>
-          <form class="email-row" onsubmit="notifyMe(event)">
-            <input id="email" type="email" placeholder="Enter your email" required />
-            <button class="btn btn-gold" type="submit">NOTIFY ME →</button>
-            <p class="fine">Launch news only. No noise.</p>
-          </form>
-          <div class="coming">
-            <div>
-              <strong>CABAI RIDE NETWORK</strong>
-              <div class="wordmark"><span class="gold">CAB</span><span class="cyan">AI</span></div>
-            </div>
-            <div class="soon">COMING SOON</div>
-          </div>
-        </div>
+  </section>
+  <section class="section" id="demo">
+    <p class="eyebrow">Interactive concept demo</p>
+    <h2>Plan your ride</h2>
+    <div class="ride">
+      <div class="metrics">
+        <div class="metric"><span>Charge</span><b>94%</b></div>
+        <div class="metric"><span>Pickup in</span><b id="pickupin">3 min</b></div>
+        <div class="metric"><span>Distance</span><b id="distance">—</b></div>
+        <div class="metric"><span>Trip time</span><b id="triptime">—</b></div>
       </div>
-    </section>
-    <section class="section wrap" id="vision">
-      <p class="eyebrow">The thesis</p>
-      <h2>More than a token.<br><span class="cyan">A road to something real.</span></h2>
-      <div class="steps">
-        <div class="step"><div class="n">01</div><div><h3>COIN</h3><p>The spark</p></div></div>
-        <div class="step"><div class="n">02</div><div><h3>COMMUNITY</h3><p>The foundation</p></div></div>
-        <div class="step"><div class="n">03</div><div><h3>APP</h3><p>The platform</p></div></div>
-        <div class="step"><div class="n">04</div><div><h3>FLEET</h3><p>The operation</p></div></div>
-        <div class="step"><div class="n">05</div><div><h3>NETWORK</h3><p>The goal</p></div></div>
+      <div class="fields" style="margin-top:14px">
+        <input id="pickup" value="128 Future Ave, Austin, TX" />
+        <input id="dest" value="500 Congress Ave, Austin, TX" />
       </div>
-      <div class="demo-banner">
-        <h3>See the transportation vision in motion.</h3>
-        <p>Book a simulated CAB AI robotaxi with demo credits and watch it prepare for pickup.</p>
-        <a class="btn" href="demo.html">Launch app demo →</a>
-      </div>
-    </section>
-    <section class="section wrap" id="roadmap">
-      <p class="eyebrow">Mission sequence</p>
-      <h2>One stage at a time.</h2>
-      <div class="roadmap">
-        <article class="road"><div class="n">01</div><h3>LAUNCH</h3><p>Launch CAB AI and build the community.</p></article>
-        <article class="road"><div class="n">02</div><h3>INFRASTRUCTURE</h3><p>Develop the official website and project foundation.</p></article>
-        <article class="road"><div class="n">03</div><h3>PLATFORM</h3><p>Build the CAB AI transportation experience.</p></article>
-        <article class="road"><div class="n">04</div><h3>AUTONOMOUS OPERATIONS</h3><p>Work toward robotaxi operations as technology, regulation, insurance, and economics allow.</p></article>
-        <article class="road"><div class="n">05</div><h3>SCALE</h3><p>Grow the fleet into a true transportation network.</p></article>
-      </div>
-    </section>
-    <section class="section wrap">
-      <div class="honest">
-        <h2>No pretending.</h2>
-        <p>No fake partnerships. No fake milestones. CAB AI must earn its future through development, legal review, execution, and transparent progress.</p>
-        <div class="disclose">
-          <h3>Important disclosure</h3>
-          <p>CAB AI is not affiliated with, endorsed by, or partnered with Tesla. Revenue figures and the proposed 20% allocation are hypothetical concepts only—not predictions, guarantees, dividends, or promises of investment returns.</p>
-        </div>
-      </div>
-    </section>
-    <section class="section wrap" id="qa">
-      <p class="eyebrow">Clarity before hype</p>
-      <h2>The vision is ambitious.<br>The claims should stay honest.</h2>
-      <div class="faq-item"><button onclick="toggleFaq(this)">What is CAB AI? <span class="chev">+</span></button><div class="a">A community-powered project that starts with a coin and aims, stage by stage, at building the groundwork for an autonomous transportation network. The token is the spark. The network is the goal.</div></div>
-      <div class="faq-item"><button onclick="toggleFaq(this)">Is CAB AI affiliated with Tesla? <span class="chev">+</span></button><div class="a">No. CAB AI is not affiliated with, endorsed by, or partnered with Tesla.</div></div>
-      <div class="faq-item"><button onclick="toggleFaq(this)">Why Tesla? <span class="chev">+</span></button><div class="a">Tesla is the most visible public conversation around robotaxis. CAB AI uses that conversation as context for a community project—not as a claim of partnership, access, or official involvement.</div></div>
-      <div class="faq-item"><button onclick="toggleFaq(this)">Is CAB AI just another meme coin? <span class="chev">+</span></button><div class="a">It begins as a community token. The point of the project is to refuse to stop there. Every public claim should be tied to work that can be shown: product, legal review, operations, and transparent progress.</div></div>
-      <div class="faq-item"><button onclick="toggleFaq(this)">What is the proposed 20% model? <span class="chev">+</span></button><div class="a">A hypothetical concept for how a future transportation business might allocate a portion of revenue toward the community if—and only if—a real business exists. It is not a dividend, not a promise, and not a prediction.</div></div>
-      <div class="faq-item"><button onclick="toggleFaq(this)">Who could qualify as a loyal holder? <span class="chev">+</span></button><div class="a">Any future qualification rules would be published clearly before they matter. Nothing on this site creates a right to revenue, tokens, or special treatment.</div></div>
-      <div class="faq-item"><button onclick="toggleFaq(this)">How could the robotaxi business work? <span class="chev">+</span></button><div class="a">Only if technology, regulation, insurance, capital, and operations all line up. The honest path is to build the app, the community, and the legal foundation first—then attempt operations when those constraints allow.</div></div>
-      <div class="faq-item"><button onclick="toggleFaq(this)">What would the CAB AI app do? <span class="chev">+</span></button><div class="a">Today: a simulated ride experience so people can feel the product vision. Later: booking, fleet status, and network tools if the project earns the right to operate.</div></div>
-      <div class="faq-item"><button onclick="toggleFaq(this)">What role could AI play? <span class="chev">+</span></button><div class="a">Routing, dispatch, support, and simulation first. Autonomy in the real world is a regulated, capital-heavy problem—not a slogan.</div></div>
-      <div class="faq-item"><button onclick="toggleFaq(this)">Why should early holders matter? <span class="chev">+</span></button><div class="a">Early holders are the community that funds attention, design, and development. That does not automatically entitle anyone to future revenue. Loyalty should be recognized through transparent rules if a real business ever exists.</div></div>
-    </section>
-    <section class="section wrap" id="support">
-      <p class="eyebrow">Support the build</p>
-      <h2>Fuel the <span class="cyan">next stage.</span></h2>
-      <p class="sub">Donations go directly to the CAB AI project wallet and help fund development, design, and the groundwork for the transportation platform.</p>
-      <div class="wallet">
-        <strong>SOLANA WALLET</strong>
-        <div class="addr" id="walletAddr">A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5</div>
-        <div class="wallet-actions">
-          <button class="btn btn-gold" type="button" onclick="copyWallet()">Copy address</button>
-          <button class="btn btn-ghost" type="button" onclick="openWallet()">Open on Solscan</button>
-        </div>
-        <p class="fine" style="margin-top:14px">Send only SOL or Solana-network tokens to this address. Donations are voluntary contributions to the project — they are not an investment, purchase, or promise of any return, reward, or future revenue.</p>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <div class="wrap foot-row">
-      <div class="logo"><span class="gold">CAB</span><span class="cyan">AI</span></div>
-      <div class="socials">
-        <a href="https://x.com/cabaiyk?s=11&t=5GYd54BVkeEHPgyiqcQrDQ" target="_blank" rel="noopener">X / @cabaiyk</a>
-        <a href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Telegram</a>
-      </div>
+      <div class="car selected" id="car-one" onclick="selectCar('one')"><strong>CABAI One</strong><div class="fine">Private sedan · 4 seats</div></div>
+      <div class="car" id="car-xl" onclick="selectCar('xl')"><strong>CABAI XL</strong><div class="fine">SUV · 6 seats</div></div>
+      <div class="car" id="car-share" onclick="selectCar('share')"><strong>CABAI Share</strong><div class="fine">Shared · 2 seats</div></div>
+      <p style="margin:14px 0">Estimated fare <strong id="fare">$0.00</strong></p>
+      <button class="btn btn-gold" type="button" onclick="orderRide()">ORDER RIDE</button>
+      <p class="fine">Simulation only. No real ride or payment.</p>
     </div>
-    <div class="wrap" style="margin-top:16px;font-size:13px">The community is the foundation. The future is earned. Not affiliated with Tesla.</div>
-  </footer>
-  <div class="toast" id="toast"></div>
-  <script src="js/app.js"></script>
+  </section>
+  <section class="section" id="roadmap">
+    <p class="eyebrow">Mission sequence</p>
+    <h2>One stage at a time.</h2>
+    <div class="road"><div class="n">01</div><h3>LAUNCH</h3><p class="sub">Launch CAB AI and build the community.</p></div>
+    <div class="road"><div class="n">02</div><h3>INFRASTRUCTURE</h3><p class="sub">Website and project foundation.</p></div>
+    <div class="road"><div class="n">03</div><h3>PLATFORM</h3><p class="sub">Build the transportation experience.</p></div>
+    <div class="road"><div class="n">04</div><h3>AUTONOMOUS OPERATIONS</h3><p class="sub">Robotaxi ops when tech, law, and economics allow.</p></div>
+    <div class="road"><div class="n">05</div><h3>SCALE</h3><p class="sub">Grow the fleet into a network.</p></div>
+  </section>
+  <section class="section">
+    <div class="honest">
+      <h2>No pretending.</h2>
+      <p class="sub">No fake partnerships. No fake milestones. CAB AI is not affiliated with Tesla. The 20% idea is hypothetical, not a promise.</p>
+    </div>
+  </section>
+  <section class="section" id="qa">
+    <p class="eyebrow">Q&A</p>
+    <h2>Keep the claims honest.</h2>
+    <div class="faq"><button onclick="toggleFaq(this)">What is CAB AI?</button><div class="a">A community project that starts with a coin and aims at an autonomous transportation network.</div></div>
+    <div class="faq"><button onclick="toggleFaq(this)">Is this Tesla?</button><div class="a">No. Not affiliated, endorsed, or partnered with Tesla.</div></div>
+    <div class="faq"><button onclick="toggleFaq(this)">Is this just a meme coin?</button><div class="a">It starts as a community token. The point is to build past that with work you can show.</div></div>
+  </section>
+  <section class="section" id="support">
+    <p class="eyebrow">Support the build</p>
+    <h2>Fuel the <span class="cyan">next stage.</span></h2>
+    <div class="wallet">
+      <strong>SOLANA WALLET</strong>
+      <div class="addr">A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5</div>
+      <div class="wallet-actions">
+        <button class="btn btn-gold" type="button" onclick="copyWallet()">Copy address</button>
+        <button class="btn btn-ghost" type="button" onclick="openWallet()">Open on Solscan</button>
+      </div>
+      <p class="fine">Donations are not an investment or a promise of returns.</p>
+    </div>
+  </section>
+</main>
+<footer class="wrap">The community is the foundation. The future is earned. Not affiliated with Tesla.<br><a href="https://x.com/cabaiyk">X</a> · <a href="https://t.me/CABAIlykk">Telegram</a></footer>
+<div class="toast" id="toast"></div>
+<script>
+const WALLET="A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5";
+function toast(m){const e=document.getElementById("toast");e.textContent=m;e.style.display="block";setTimeout(()=>e.style.display="none",2000)}
+function toggleMenu(){document.getElementById("mobileMenu").classList.toggle("open")}
+function toggleFaq(b){b.parentElement.classList.toggle("open")}
+function copyWallet(){navigator.clipboard.writeText(WALLET).then(()=>toast("Wallet copied")).catch(()=>toast(WALLET))}
+function openWallet(){window.open("https://solscan.io/account/"+WALLET,"_blank")}
+function notifyMe(e){e.preventDefault();toast("You're on the launch list.");e.target.reset()}
+let vehicle="one"; const fares={one:18.4,xl:24.9,share:9.6};
+function selectCar(id){vehicle=id;document.querySelectorAll(".car").forEach(c=>c.classList.remove("selected"));document.getElementById("car-"+id).classList.add("selected");updateFare()}
+function updateFare(){const a=document.getElementById("pickup").value||"";const b=document.getElementById("dest").value||"";const miles=Math.max(1.2,Math.min(18,(Math.abs(a.length-b.length)+Math.min(a.length,b.length)/12)*0.35));document.getElementById("fare").textContent="$"+(fares[vehicle]+miles*1.15).toFixed(2);document.getElementById("distance").textContent=miles.toFixed(1)+" mi";document.getElementById("triptime").textContent=Math.round(miles*3.4+4)+" min"}
+function orderRide(){toast("Simulation only — no real ride.")}
+["pickup","dest"].forEach(id=>document.getElementById(id).addEventListener("input",updateFare));updateFare();
+</script>
 </body>
 </html>
