@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CAB AI — App vision (not live yet)</title>
+<meta name="description" content="Product vision walkthrough: order a ride, inspect vehicle details, pick a playlist, and preview live view mode."/>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/site.css"/>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="index.html" aria-label="CAB AI home">
+      <span class="logo-combo">
+        <img class="mark" src="assets/mark.svg" alt=""/>
+        <span class="brand-text"><span class="cab">CAB</span> <span class="ai">AI</span></span>
+      </span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="app.html" aria-current="page">Vision / App</a>
+      <a href="index.html#support">Support</a>
+      <a href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Telegram</a>
+      <a class="nav-cta-m" href="index.html#waitlist">Get updates</a>
+    </div>
+    <a class="nav-cta" href="index.html#waitlist">Get updates</a>
+  </nav>
+</header>
+
+<main id="main" class="app-page">
+  <div class="wrap">
+    <div class="app-intro">
+      <span class="vision-badge">Vision — not live yet</span>
+      <h1>What the app will feel like</h1>
+      <p class="prose">Click through a product mock of ordering a robotaxi: set a trip, inspect the vehicle, choose music, then open view mode. This is an illustrative walkthrough — not a timed ride simulation.</p>
+    </div>
+
+    <div class="app-layout">
+      <aside class="step-nav" aria-label="App screens">
+        <h2>Screens</h2>
+        <button type="button" class="step-btn active" data-step="0"><span class="n">01</span> Home · set trip</button>
+        <button type="button" class="step-btn" data-step="1"><span class="n">02</span> Choose vehicle</button>
+        <button type="button" class="step-btn" data-step="2"><span class="n">03</span> Playlist</button>
+        <button type="button" class="step-btn" data-step="3"><span class="n">04</span> View mode</button>
+      </aside>
+
+      <div class="phone-stage">
+        <div class="phone" aria-live="polite">
+          <div class="phone-notch" aria-hidden="true"></div>
+          <div class="phone-screen">
+
+            <!-- Screen 1: Home -->
+            <section class="screen active" data-screen="0" aria-label="Home — set pickup and destination">
+              <div class="screen-top">
+                <div class="app-name"><span class="cab">CAB</span> <span class="ai">AI</span></div>
+                <span class="vision-badge">Vision</span>
+              </div>
+              <p class="eyebrow" style="margin-bottom:14px">Where to?</p>
+              <div class="field">
+                <label>Pickup</label>
+                <div class="val">Current location · Downtown</div>
+              </div>
+              <div class="field">
+                <label>Destination</label>
+                <div class="val">Harbor Innovation Hub</div>
+              </div>
+              <div class="field">
+                <label>Trip summary</label>
+                <div class="val" style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap">
+                  <span>~8.4 mi</span>
+                  <span style="color:var(--cyan)">Est. 18–24 min</span>
+                </div>
+              </div>
+              <div class="mini-map" aria-hidden="true">
+                <svg viewBox="0 0 300 180" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+                  <defs>
+                    <linearGradient id="routeG" x1="0" y1="0" x2="1" y2="0">
+                      <stop stop-color="#D4AF37"/><stop offset="1" stop-color="#3DE0FF"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="300" height="180" fill="#0c121a"/>
+                  <g stroke="rgba(255,255,255,.05)" stroke-width="10">
+                    <path d="M0 45 H300"/><path d="M0 95 H300"/><path d="M0 145 H300"/>
+                    <path d="M70 0 V180"/><path d="M155 0 V180"/><path d="M240 0 V180"/>
+                  </g>
+                  <path d="M36 138 C78 126,118 72,178 58 S250 48,272 36" fill="none" stroke="url(#routeG)" stroke-width="3.5" stroke-linecap="round"/>
+                  <circle cx="36" cy="138" r="8" fill="#D4AF37"/><circle cx="36" cy="138" r="3" fill="#0B0D10"/>
+                  <circle cx="272" cy="36" r="8" fill="#3DE0FF"/><circle cx="272" cy="36" r="3" fill="#0B0D10"/>
+                </svg>
+              </div>
+              <div class="screen-footer">
+                <div class="screen-actions">
+                  <button type="button" class="btn btn-primary" data-next>Continue to vehicles</button>
+                </div>
+              </div>
+            </section>
+
+            <!-- Screen 2: Vehicles -->
+            <section class="screen" data-screen="1" aria-label="Choose vehicle with full details">
+              <div class="screen-top">
+                <div class="app-name"><span class="cab">CAB</span> <span class="ai">AI</span></div>
+                <span class="vision-badge">Vision</span>
+              </div>
+              <p class="eyebrow" style="margin-bottom:14px">Available units</p>
+
+              <div class="veh-card selected" data-veh="aurora" role="button" tabindex="0">
+                <div class="veh-head">
+                  <strong>Aurora S</strong>
+                  <span class="veh-eta">ETA 4 min</span>
+                </div>
+                <div class="veh-stats">
+                  <div class="stat">Model<b>Robotaxi Sedan</b></div>
+                  <div class="stat">Seats<b>4</b></div>
+                  <div class="stat">Battery
+                    <b>87%</b>
+                    <div class="battery" aria-hidden="true"><span style="width:87%"></span></div>
+                  </div>
+                  <div class="stat">Range / Charge<b>214 mi · Fast</b></div>
+                  <div class="stat">Fare est.<b>$18–22</b></div>
+                  <div class="stat">Cabin<b>Quiet · XL trunk</b></div>
+                </div>
+              </div>
+
+              <div class="veh-card" data-veh="nova" role="button" tabindex="0">
+                <div class="veh-head">
+                  <strong>Nova XL</strong>
+                  <span class="veh-eta">ETA 7 min</span>
+                </div>
+                <div class="veh-stats">
+                  <div class="stat">Model<b>Robotaxi SUV</b></div>
+                  <div class="stat">Seats<b>6</b></div>
+                  <div class="stat">Battery
+                    <b>72%</b>
+                    <div class="battery" aria-hidden="true"><span style="width:72%"></span></div>
+                  </div>
+                  <div class="stat">Range / Charge<b>168 mi · Standard</b></div>
+                  <div class="stat">Fare est.<b>$24–29</b></div>
+                  <div class="stat">Cabin<b>Panorama roof</b></div>
+                </div>
+              </div>
+
+              <div class="screen-footer">
+                <div class="screen-actions">
+                  <button type="button" class="btn btn-secondary" data-prev>Back</button>
+                  <button type="button" class="btn btn-primary" data-next>Customize trip</button>
+                </div>
+              </div>
+            </section>
+
+            <!-- Screen 3: Playlist -->
+            <section class="screen" data-screen="2" aria-label="Choose playlist before arrival">
+              <div class="screen-top">
+                <div class="app-name"><span class="cab">CAB</span> <span class="ai">AI</span></div>
+                <span class="vision-badge">Vision</span>
+              </div>
+              <p class="eyebrow" style="margin-bottom:8px">Music before arrival</p>
+              <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Cabin audio starts when your unit is ~2 minutes out.</p>
+
+              <div class="playlist selected" data-pl="neon" role="button" tabindex="0">
+                <div class="art" style="background:linear-gradient(135deg,#D4AF37,#3DE0FF)"></div>
+                <div class="meta"><strong>Neon Corridor</strong><span>Electronic · 42 tracks</span></div>
+              </div>
+              <div class="playlist" data-pl="quiet" role="button" tabindex="0">
+                <div class="art" style="background:linear-gradient(135deg,#3DE0FF,#1a3a50)"></div>
+                <div class="meta"><strong>Quiet Cabin</strong><span>Ambient · 28 tracks</span></div>
+              </div>
+              <div class="playlist" data-pl="city" role="button" tabindex="0">
+                <div class="art" style="background:linear-gradient(135deg,#D4AF37,#5a3a10)"></div>
+                <div class="meta"><strong>City Pulse</strong><span>Indie / Hip-hop · 36 tracks</span></div>
+              </div>
+              <div class="playlist" data-pl="off" role="button" tabindex="0">
+                <div class="art" style="background:linear-gradient(135deg,#444,#151515)"></div>
+                <div class="meta"><strong>No music</strong><span>Silent cabin</span></div>
+              </div>
+
+              <div class="screen-footer">
+                <div class="screen-actions">
+                  <button type="button" class="btn btn-secondary" data-prev>Back</button>
+                  <button type="button" class="btn btn-primary" data-next>Open view mode</button>
+                </div>
+              </div>
+            </section>
+
+            <!-- Screen 4: View mode — live dashcam vision -->
+            <section class="screen" data-screen="3" aria-label="View mode — robotaxi dashcam preview">
+              <div class="screen-top">
+                <div class="app-name"><span class="cab">CAB</span> <span class="ai">AI</span></div>
+                <span class="vision-badge">Vision</span>
+              </div>
+              <p class="eyebrow" style="margin-bottom:10px">View mode</p>
+              <div class="view-mode">
+                <div class="cam-frame" data-cam-frame>
+                  <video
+                    class="cam-video"
+                    data-cam-video
+                    src="assets/dashcam-city.mp4"
+                    poster="assets/dashcam-city-poster.jpg"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto"
+                    aria-label="Sample forward-facing street dashcam footage"
+                  ></video>
+                  <div class="cam-hud" aria-hidden="true">
+                    <div class="cam-hud-top">
+                      <span class="live"><i></i> REC · LIVE</span>
+                      <span class="cam-ts" data-cam-ts>--:--:--</span>
+                    </div>
+                    <div class="cam-hud-bottom">
+                      <div class="cam-meta">
+                        <div class="cam-title">Aurora S · hood cam</div>
+                        <div class="cam-chips">
+                          <span class="cam-chip"><span class="cam-chip-k">SPD</span> 38 km/h</span>
+                          <span class="cam-chip cam-chip-gold"><span class="cam-chip-k">ETA</span> 4 min</span>
+                          <span class="cam-chip"><span class="cam-chip-k">BAT</span> 87%</span>
+                        </div>
+                      </div>
+                      <div class="cam-minimap" title="Route sketch">
+                        <div class="cam-minimap-grid"></div>
+                        <div class="cam-minimap-route"></div>
+                        <div class="cam-minimap-pin cab"></div>
+                        <div class="cam-minimap-pin you"></div>
+                        <span class="cam-minimap-label">EN ROUTE</span>
+                      </div>
+                    </div>
+                    <p class="cam-preview-note">Product vision preview · sample street footage — not a live fleet camera yet</p>
+                  </div>
+                  <button type="button" class="cam-toggle" data-cam-toggle aria-label="Pause dashcam preview" title="Pause / play">❚❚</button>
+                </div>
+              </div>
+              <div class="screen-footer">
+                <div class="screen-actions">
+                  <button type="button" class="btn btn-secondary" data-prev>Back</button>
+                  <button type="button" class="btn btn-cyan" data-restart>Restart walkthrough</button>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="app-footnote">Product mock only. No live fleet, no dispatch loop, no compressed countdown game.</p>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-row">
+    <div>
+      <div class="brand-text footer-brand"><span class="cab">CAB</span> <span class="ai">AI</span></div>
+      <p><strong>Concept-stage project.</strong> Not affiliated with Tesla. App screens are vision UI.</p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

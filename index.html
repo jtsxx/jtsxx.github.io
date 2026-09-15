@@ -3,307 +3,219 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CAB AI — Coming Soon</title>
-<link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<style>
-:root{--bg:#070604;--ink:#f7edd2;--muted:#d4c49a;--gold:#f0c14b;--gold2:#c9971a;--blue:#2ecbff;--line:rgba(240,193,75,.22);--header-h:72px}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Manrope,system-ui,sans-serif;background:#070604;color:var(--ink);line-height:1.65}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(700px 280px at 50% 0,rgba(240,193,75,.18),transparent 60%);z-index:0}
-a{color:inherit;text-decoration:none}
-.nav,.menu,.hero,.banner,.section,footer{position:relative;z-index:1}
-.nav{position:sticky;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:rgba(7,6,4,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-.logo{font-family:Audiowide,sans-serif;letter-spacing:.12em;font-size:18px}
-.logo b{color:var(--gold)}.logo i{color:var(--blue);font-style:normal;text-shadow:0 0 12px rgba(46,203,255,.65)}
-.burger{width:44px;height:44px;border:1px solid var(--line);background:#120e08;color:var(--gold);border-radius:10px;cursor:pointer}
-.burger:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.menu{display:none;flex-direction:column;padding:8px 18px 16px;background:#0b0906}
-.menu.open{display:flex}
-.menu a{font-size:13px;letter-spacing:.14em;color:var(--muted);padding:12px 0;border-bottom:1px solid var(--line);font-family:Audiowide,sans-serif}
-.menu a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;color:var(--gold)}
-#top,#vision,#roadmap,#support{scroll-margin-top:var(--header-h)}
-.hero{padding:28px 18px 36px}
-.hero-card{border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 0 40px rgba(240,193,75,.12)}
-.hero-card img{width:100%;display:block}
-.kicker{color:var(--gold);letter-spacing:.2em;font-size:11px;margin:18px 0 8px;font-family:Audiowide,sans-serif}
-h1{font-family:Audiowide,sans-serif;font-size:clamp(56px,16vw,88px);line-height:.88;letter-spacing:.06em}
-h1 b{background:linear-gradient(180deg,#ffe08a,#d4a017 55%,#a67c0c);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 #7a5a08) drop-shadow(0 0 18px rgba(240,193,75,.45))}
-h1 i{font-style:normal;color:#2ecbff;text-shadow:0 0 8px #2ecbff,0 0 18px #1aa3ff;-webkit-text-stroke:1px #7af0ff}
-.lead{font-size:20px;font-weight:700;margin:14px 0 8px}
-.sub{color:var(--muted);margin-bottom:18px}
-.mail,.btn{width:100%;border-radius:12px;font-family:inherit;font-size:15px;font-weight:800}
-.mail{background:#120e08;border:1px solid var(--line);color:#fff;padding:14px;margin-bottom:10px}
-.mail:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.btn{display:inline-flex;align-items:center;justify-content:center;border:0;padding:15px;cursor:pointer}
-.btn:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
-.btn-gold{background:linear-gradient(180deg,#ffd76a,#d4a017);color:#1a1404;box-shadow:0 8px 24px rgba(240,193,75,.28)}
-.btn-link{display:inline-block;margin-top:10px;padding:10px 0;font-size:13px;font-weight:700;color:var(--blue);text-decoration:underline;text-underline-offset:3px;width:auto}
-.section{padding:52px 18px}
-.eyebrow{color:var(--gold);font-size:11px;letter-spacing:.18em;font-family:Audiowide,sans-serif}
-h2{font-family:Audiowide,sans-serif;font-size:clamp(26px,7vw,40px);margin:8px 0 16px;color:var(--gold)}
-h2 span{color:var(--blue)}
-.card{border:1px solid var(--line);background:linear-gradient(180deg,#14100a,#0c0a07);padding:18px;margin-top:12px;border-radius:16px}
-.n{color:var(--gold);font-weight:800}
-.cta{margin-top:16px;padding:20px;border-radius:16px;border:1px solid rgba(46,203,255,.28)}
-.cta .btn{margin-top:14px}
-.sim-tag{display:inline-block;font-size:11px;letter-spacing:.14em;font-family:Audiowide,sans-serif;color:var(--blue);border:1px solid rgba(46,203,255,.35);padding:4px 10px;border-radius:999px;margin-bottom:10px}
-.addr{word-break:break-all;background:#090704;padding:14px;margin:12px 0;font-size:13px;border-radius:10px;border:1px solid var(--line)}
-footer{padding:24px 18px 64px;color:var(--muted);font-size:13px}
-footer p{margin-top:8px}
-.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#16110a;border:1px solid var(--line);color:var(--gold);padding:12px 16px;display:none;z-index:80;border-radius:12px;max-width:min(92vw,420px);text-align:center}
-.save-row{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:8px}
-.save-amt{font-family:Audiowide,sans-serif;font-size:36px;color:var(--gold)}
-.bar{height:8px;background:#1a140c;margin:12px 0 6px;border-radius:99px;overflow:hidden}
-.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--blue))}
-.donor{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
-.donor span{color:var(--gold);font-weight:800}
-.access{margin-top:16px;padding:18px;border-radius:16px;border:1px solid var(--line);background:#120e08}
-.access h3{color:var(--gold);margin-bottom:8px}
-.access ol{margin:10px 0 0 18px;color:var(--muted);font-size:14px}
-.access li{margin-bottom:6px}
-.fine{color:var(--muted);font-size:13px;margin-top:8px}
-.sync-banner{display:none;margin-top:12px;padding:12px 14px;border-radius:12px;font-size:13px;border:1px solid rgba(240,193,75,.35);background:rgba(240,193,75,.08);color:var(--gold)}
-.sync-banner.err{border-color:rgba(255,120,80,.45);background:rgba(255,80,40,.1);color:#ffb39a}
-.sync-banner.ok{border-color:rgba(46,203,255,.35);background:rgba(46,203,255,.08);color:var(--blue)}
-.sync-banner.show{display:block}
-.form-hint{color:var(--muted);font-size:12px;margin-top:8px}
-.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-</style>
+<title>CAB AI — Autonomous robotaxi network</title>
+<meta name="description" content="CAB AI is building an autonomous ride network. Explore the product vision: vehicle intel, trip music, and live view of your robotaxi."/>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/site.css"/>
 </head>
 <body>
-<header class="nav">
-  <a class="logo" href="#top"><b>CAB</b><i>AI</i></a>
-  <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu" onclick="menu()">☰</button>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="index.html" aria-label="CAB AI home">
+      <span class="logo-combo">
+        <img class="mark" src="assets/mark.svg" alt=""/>
+        <span class="brand-text"><span class="cab">CAB</span> <span class="ai">AI</span></span>
+      </span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    <div class="nav-links" id="navLinks">
+      <a href="app.html">Vision / App</a>
+      <a href="#features">Features</a>
+      <a href="#support">Support</a>
+      <a href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Telegram</a>
+      <a class="nav-cta-m" href="app.html">Open app vision</a>
+    </div>
+    <a class="nav-cta" href="app.html">Open app vision</a>
+  </nav>
 </header>
-<div class="menu" id="menu" hidden>
-  <a href="#vision" onclick="menu()">VISION</a>
-  <a href="demo.html" onclick="menu()">APP DEMO</a>
-  <a href="#roadmap" onclick="menu()">ROADMAP</a>
-  <a href="#support" onclick="menu()">SUPPORT</a>
-</div>
-<section class="hero" id="top">
-  <div class="hero-card"><img src="assets/cab-ai-logo-banner.jpeg" alt="CAB AI coming soon banner"/></div>
-  <div class="kicker">COMING SOON · CONCEPT STAGE</div>
-  <h1><b>CAB</b><i>AI</i></h1>
-  <p class="lead">The coin is the beginning. The network is the goal.</p>
-  <p class="sub">A community-powered project building toward a real autonomous transportation business.</p>
-  <form id="waitlistForm" onsubmit="notify(event)" novalidate>
-    <label class="visually-hidden" for="email">Email for launch updates</label>
-    <input class="mail" id="email" name="email" type="email" placeholder="Enter your email" required autocomplete="email"/>
-    <button class="btn btn-gold" type="submit">Get launch updates →</button>
-    <p class="form-hint">Saved on this device for now — cloud waitlist backend is not wired yet.</p>
-  </form>
-</section>
-<section class="section" id="vision">
-  <p class="eyebrow">THE THESIS</p>
-  <h2>MORE THAN A TOKEN.<br><span>A ROAD TO SOMETHING REAL.</span></h2>
-  <div class="card"><div class="n">01</div><h3>Coin</h3><p class="fine">The spark that funds the first miles.</p></div>
-  <div class="cta">
-    <span class="sim-tag">SIMULATION</span>
-    <p>See how a unit could be assigned, watch a compressed pickup countdown, and follow a cab along a demo route — concept only, not a live fleet.</p>
-    <a class="btn btn-gold" href="demo.html">Open the ride simulation →</a>
+
+<main id="main">
+  <!-- Hero: copy first, then full-width media band — never crop the car -->
+  <section class="hero">
+    <div class="wrap hero-copy">
+      <span class="eyebrow">Robotaxi network · Concept stage</span>
+      <h1>The ride you order.<br/><span class="gold">The network</span> you help <span class="cyan">build.</span></h1>
+      <p class="lead">CAB AI is designing an autonomous mobility experience: full vehicle intel before you ride, music ready when the car arrives, and live view as your robotaxi comes to you.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg" href="app.html">See what the app will be like</a>
+        <a class="btn btn-secondary" href="#support">Support &amp; community</a>
+      </div>
+    </div>
+
+    <div class="hero-media-band" role="img" aria-label="CAB AI original hero: gold autonomous EV with cyan tech x-ray interior">
+      <div class="hero-media-inner">
+        <img
+          class="hero-art"
+          src="assets/hero-original.png"
+          width="1280"
+          height="720"
+          alt="Gold metallic robotaxi with cyan tech x-ray internals inside a luminous gold aperture"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="promise">
+    <div class="wrap promise-layout">
+      <div class="promise-copy">
+        <span class="eyebrow">Product promise</span>
+        <h2>Mobility that feels premium — and transparent</h2>
+        <p class="prose">No black-box dispatch. When you order, you see the machine: battery, model, seats, charge, ETA. You choose the soundtrack before wheels turn. You can watch the vehicle approach in view mode.</p>
+      </div>
+      <aside class="promise-panel">
+        <span class="vision-badge">Vision — not live yet</span>
+        <h3>Built for clarity</h3>
+        <p>This site showcases the product direction. There is no playable fake dispatcher here — only a walkthrough of how CAB AI is meant to feel when the network launches.</p>
+        <a class="text-link" href="app.html">Walk through the app →</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Key features</span>
+        <h2>What you’ll unlock in the app</h2>
+      </div>
+      <div class="feat-rail">
+        <article class="feat-card">
+          <div class="feat-icon">01</div>
+          <h3>Vehicle intel</h3>
+          <p>Battery %, range, seats, model, charge status, ETA, and fare estimate — before you confirm the ride.</p>
+        </article>
+        <article class="feat-card feat-card-accent">
+          <div class="feat-icon">02</div>
+          <h3>Trip music</h3>
+          <p>Pick a playlist while the robotaxi is inbound so cabin audio is ready the moment you step in.</p>
+        </article>
+        <article class="feat-card">
+          <div class="feat-icon">03</div>
+          <h3>Live view mode</h3>
+          <p>Watch your unit head toward you — camera-style framing plus map context so you always know where it is.</p>
+        </article>
+      </div>
+      <div class="section-cta">
+        <a class="btn btn-cyan" href="app.html">Walk through the app vision →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="roadmap">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Roadmap</span>
+        <h2>Signal → Launch → Network</h2>
+        <p class="prose">Honest stages. No inflated metrics.</p>
+      </div>
+      <ol class="stages">
+        <li class="stage current">
+          <div class="stage-num">Stage 01</div>
+          <h3>Signal</h3>
+          <p>Community forms around the vision. Brand, product mock, and early support for build costs.</p>
+          <span class="tag">You are here</span>
+        </li>
+        <li class="stage">
+          <div class="stage-num">Stage 02</div>
+          <h3>Launch</h3>
+          <p>Pilot markets, real fleet integrations, and the first production app surfaces for ordering.</p>
+        </li>
+        <li class="stage">
+          <div class="stage-num">Stage 03</div>
+          <h3>Network</h3>
+          <p>Scaled robotaxi coverage, denser live view, and a mobility network owned by its early believers.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="waitlist">
+    <div class="wrap waitlist-block">
+      <span class="eyebrow">Updates</span>
+      <h2>Get product updates</h2>
+      <p class="prose">Saved only on this device (localStorage). No fake “you’re on the list” backend — when a real waitlist ships, we’ll say so.</p>
+      <form class="wait-form" id="waitForm">
+        <input type="email" id="waitEmail" name="email" placeholder="you@email.com" required autocomplete="email"/>
+        <button class="btn btn-primary" type="submit">Save locally</button>
+      </form>
+      <p class="wait-msg" id="waitMsg" role="status"></p>
+      <p class="note">Prefer chat? Join <a href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Telegram @CABAIlykk</a>.</p>
+    </div>
+  </section>
+
+  <section class="section" id="support">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Support</span>
+        <h2>Help fund early build costs</h2>
+        <p class="prose">Optional. Verified wallets only — no fake donation feed. ETH and Base share the same address.</p>
+      </div>
+      <div class="support-grid">
+        <div class="wallet-stack">
+          <div class="wallet">
+            <div class="wallet-label">Solana · SOL</div>
+            <div class="wallet-addr" id="w-sol">A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5</div>
+            <div class="wallet-actions">
+              <button type="button" class="chip" data-copy="w-sol">Copy</button>
+              <a class="chip" href="https://solscan.io/account/A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5" target="_blank" rel="noopener">Solscan</a>
+            </div>
+          </div>
+          <div class="wallet">
+            <div class="wallet-label">Ethereum · ETH</div>
+            <div class="wallet-addr" id="w-eth">0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8</div>
+            <div class="wallet-actions">
+              <button type="button" class="chip" data-copy="w-eth">Copy</button>
+              <a class="chip" href="https://etherscan.io/address/0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8" target="_blank" rel="noopener">Etherscan</a>
+            </div>
+          </div>
+          <div class="wallet">
+            <div class="wallet-label">Base · same address as ETH</div>
+            <div class="wallet-addr" id="w-base">0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8</div>
+            <div class="wallet-actions">
+              <button type="button" class="chip" data-copy="w-base">Copy</button>
+              <a class="chip" href="https://basescan.org/address/0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8" target="_blank" rel="noopener">Basescan</a>
+            </div>
+          </div>
+          <div class="wallet">
+            <div class="wallet-label">Bitcoin · BTC</div>
+            <div class="wallet-addr" id="w-btc">bc1p3npy6hxkawppse00g3y857m8th7hlsx5f7tmtc348favj7s5rrks5t2wat</div>
+            <div class="wallet-actions">
+              <button type="button" class="chip" data-copy="w-btc">Copy</button>
+              <a class="chip" href="https://mempool.space/address/bc1p3npy6hxkawppse00g3y857m8th7hlsx5f7tmtc348favj7s5rrks5t2wat" target="_blank" rel="noopener">Mempool</a>
+            </div>
+          </div>
+          <p class="note"><strong>Note:</strong> ETH and Base use the same address. Always verify on an explorer before sending.</p>
+        </div>
+        <div class="panel panel-glow">
+          <h3>Community</h3>
+          <p>Progress updates, product previews, and build discussion live on Telegram.</p>
+          <a class="btn btn-primary btn-full" href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Join Telegram</a>
+          <a class="btn btn-secondary btn-full" href="app.html">Open app vision</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-row">
+    <div>
+      <div class="brand-text footer-brand"><span class="cab">CAB</span> <span class="ai">AI</span></div>
+      <p><strong>Concept-stage project.</strong> Not affiliated with Tesla or any OEM. Features shown are product vision, not a live fleet.</p>
+    </div>
+    <div class="footer-links">
+      <a href="app.html">App vision</a>
+      <a href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Telegram</a>
+    </div>
   </div>
-</section>
-<section class="section" id="roadmap">
-  <p class="eyebrow">ROADMAP</p>
-  <h2>BUILT IN <span>STAGES.</span></h2>
-  <div class="card"><div class="n">01</div><h3>Signal</h3><p class="fine">Community, concept demo, and early support.</p></div>
-  <div class="card"><div class="n">02</div><h3>Launch</h3><p class="fine">Token and private briefing for early supporters.</p></div>
-  <div class="card"><div class="n">03</div><h3>Network</h3><p class="fine">Product path toward a real ride network.</p></div>
-</section>
-<section class="section" id="support">
-  <p class="eyebrow">SUPPORT THE BUILD</p>
-  <h2>FUEL THE <span>NEXT STAGE.</span></h2>
-  <p class="fine">Early contributions are modest by design. They cover development, hosting, and first operating costs — not a fundraising round.</p>
-  <div class="card">
-    <div class="fine">BUILD MILESTONE · WALLET SYNC</div>
-    <div class="save-row"><div class="save-amt">$5,000</div><div class="fine" id="raisedLabel">$0.00 raised so far</div></div>
-    <div class="bar"><i id="raisedBar" style="width:0%"></i></div>
-    <p class="fine" id="raisedNote">$0.00 of $5,000. No donations yet — totals update when a transfer hits SOL, ETH, Base, or BTC.</p>
-    <div class="sync-banner" id="syncBanner" role="status" aria-live="polite"></div>
-  </div>
-  <div class="card"><strong>Supporters</strong><div id="donorList"><p class="fine">No donations yet. Be the first.</p></div></div>
-  <div class="access">
-    <h3>Early-access channel</h3>
-    <p>Support at this stage is small and limited — treated as a seat at the table, not a paid product.</p>
-    <ol>
-      <li>Send a contribution on a labeled network (only what you can afford to lose).</li>
-      <li>Join the public Telegram below and introduce yourself.</li>
-      <li>We move verified early supporters into a private briefing chat for the fullest launch briefing and first notice before a public drop.</li>
-    </ol>
-    <p class="fine">Joining Telegram alone does not guarantee a private seat; contribution + join is the path.</p>
-    <a class="btn btn-gold" style="margin-top:14px" href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Join Telegram →</a>
-  </div>
-  <div class="card">
-    <strong>Solana</strong>
-    <div class="addr">A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5</div>
-    <button class="btn btn-gold" type="button" onclick="copyAddr('A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5','Solana')">Copy SOL address</button>
-    <a class="btn-link" href="https://solscan.io/account/A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5" target="_blank" rel="noopener">View on Solscan →</a>
-  </div>
-  <div class="card">
-    <strong>Ethereum</strong>
-    <div class="addr">0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8</div>
-    <button class="btn btn-gold" type="button" onclick="copyAddr('0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8','Ethereum')">Copy ETH address</button>
-    <a class="btn-link" href="https://etherscan.io/address/0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8" target="_blank" rel="noopener">View on Etherscan →</a>
-  </div>
-  <div class="card">
-    <strong>Base</strong>
-    <div class="addr">0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8</div>
-    <button class="btn btn-gold" type="button" onclick="copyAddr('0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8','Base')">Copy Base address</button>
-    <a class="btn-link" href="https://basescan.org/address/0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8" target="_blank" rel="noopener">View on Basescan →</a>
-    <p class="fine">ETH and Base intentionally share the same address — send on the correct network only.</p>
-  </div>
-  <div class="card">
-    <strong>Bitcoin</strong>
-    <div class="addr">bc1p3npy6hxkawppse00g3y857m8th7hlsx5f7tmtc348favj7s5rrks5t2wat</div>
-    <button class="btn btn-gold" type="button" onclick="copyAddr('bc1p3npy6hxkawppse00g3y857m8th7hlsx5f7tmtc348favj7s5rrks5t2wat','Bitcoin')">Copy BTC address</button>
-    <a class="btn-link" href="https://mempool.space/address/bc1p3npy6hxkawppse00g3y857m8th7hlsx5f7tmtc348favj7s5rrks5t2wat" target="_blank" rel="noopener">View on mempool.space →</a>
-    <p class="fine">Send only on the labeled network. Send only what you can afford to lose.</p>
-  </div>
-</section>
-<footer>
-  <p>© 2026 CAB AI. Concept-stage project. Not affiliated with Tesla.</p>
-  <p>Concept-stage risk: nothing here is a live ride network, investment offer, or guaranteed product. Support is voluntary and may never convert into a finished service.</p>
 </footer>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script>
-function toast(t){const e=document.getElementById("toast");e.textContent=t;e.style.display="block";setTimeout(()=>e.style.display="none",4200)}
-function menu(){
-  const m=document.getElementById("menu");
-  const btn=document.querySelector(".burger");
-  const open=!m.classList.contains("open");
-  m.classList.toggle("open",open);
-  m.hidden=!open;
-  if(btn)btn.setAttribute("aria-expanded",open?"true":"false");
-}
-function copyAddr(addr,label){navigator.clipboard.writeText(addr).then(()=>toast(label+" address copied")).catch(()=>toast(addr))}
-const WAITLIST_KEY="cabai_waitlist_v1";
-function notify(e){
-  e.preventDefault();
-  const input=document.getElementById("email");
-  const email=(input.value||"").trim().toLowerCase();
-  if(!email||!input.checkValidity()){toast("Enter a valid email");input.focus();return}
-  let list=[];
-  try{list=JSON.parse(localStorage.getItem(WAITLIST_KEY)||"[]")}catch(err){list=[]}
-  if(!list.includes(email))list.push(email);
-  localStorage.setItem(WAITLIST_KEY,JSON.stringify(list));
-  toast("Saved locally for now — launch list backend not wired yet");
-  e.target.reset();
-}
-const GOAL=5000;
-const W={sol:"A2x1TegBj9fy27TtVidez6PyR8boe4ZTqxArX2qrf9q5",eth:"0x148ba2a5de2cbaa3444c8e7fa222180e112f4fc8",btc:"bc1p3npy6hxkawppse00g3y857m8th7hlsx5f7tmtc348favj7s5rrks5t2wat"};
-const seenKey="cabai_seen_donations_v1";
-let seen={};try{seen=JSON.parse(localStorage.getItem(seenKey)||"{}")}catch(e){seen={}}
-let prices={sol:0,eth:0,btc:0};
-function money(n){return "$"+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}
-function shortA(a){return a.slice(0,4)+"\u2026"+a.slice(-4)}
-function mark(id){seen[id]=1;localStorage.setItem(seenKey,JSON.stringify(seen))}
-function setSyncBanner(kind,msg){
-  const el=document.getElementById("syncBanner");
-  el.className="sync-banner show "+kind;
-  el.textContent=msg;
-}
-async function pricesNow(){
-  const r=await fetch("https://api.coingecko.com/api/v3/simple/price?ids=solana,ethereum,bitcoin&vs_currencies=usd");
-  if(!r.ok)throw new Error("CoinGecko HTTP "+r.status);
-  const j=await r.json();
-  prices.sol=(j.solana&&j.solana.usd)||0;
-  prices.eth=(j.ethereum&&j.ethereum.usd)||0;
-  prices.btc=(j.bitcoin&&j.bitcoin.usd)||0;
-  if(!prices.sol&&!prices.eth&&!prices.btc)throw new Error("CoinGecko returned empty prices");
-}
-function rpc(url,method,params){
-  return fetch(url,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({jsonrpc:"2.0",id:1,method,params})}).then(async r=>{
-    if(!r.ok)throw new Error("RPC HTTP "+r.status);
-    return r.json();
-  });
-}
-async function solIn(){
-  const items=[];let usd=0;let ok=false;
-  try{
-    const sigs=await rpc("https://solana-rpc.publicnode.com","getSignaturesForAddress",[W.sol,{limit:20}]);
-    ok=true;
-    const list=(sigs.result||[]).filter(s=>!s.err).slice(0,12);
-    for(const s of list){
-      const tx=await rpc("https://solana-rpc.publicnode.com","getTransaction",[s.signature,{encoding:"jsonParsed",maxSupportedTransactionVersion:0}]);
-      const t=tx.result;if(!t||!t.meta)continue;
-      const keys=(t.transaction.message.accountKeys||[]).map(k=>typeof k==="string"?k:k.pubkey);
-      const i=keys.indexOf(W.sol);if(i<0)continue;
-      const lamports=(t.meta.postBalances[i]||0)-(t.meta.preBalances[i]||0);
-      if(lamports<=5000)continue;
-      const sol=lamports/1e9;const val=sol*prices.sol;usd+=val;
-      const from=keys.find(k=>k!==W.sol)||"wallet";
-      items.push({id:"sol-"+s.signature,label:shortA(from),amt:sol.toFixed(3)+" SOL",usd:val,chain:"SOL"});
-    }
-  }catch(e){ok=false}
-  return{usd,items,ok};
-}
-async function evmBal(url,chain){
-  try{
-    const j=await rpc(url,"eth_getBalance",[W.eth,"latest"]);
-    if(!j||j.result==null)return{usd:0,items:[],ok:false};
-    const wei=parseInt(j.result,16)||0;
-    const eth=wei/1e18;const val=eth*prices.eth;
-    return{usd:val,items:val>0.5?[{id:chain+"-bal",label:chain+" wallet",amt:eth.toFixed(4)+" ETH",usd:val,chain}]:[],ok:true};
-  }catch(e){return{usd:0,items:[],ok:false}}
-}
-async function btcIn(){
-  try{
-    const r=await fetch("https://blockstream.info/api/address/"+W.btc);
-    if(!r.ok)throw new Error("btc");
-    const j=await r.json();
-    const funded=((j.chain_stats&&j.chain_stats.funded_txo_sum)||0)+((j.mempool_stats&&j.mempool_stats.funded_txo_sum)||0);
-    const btc=funded/1e8;const val=btc*prices.btc;
-    return{usd:val,items:val>1?[{id:"btc-in",label:"BTC wallet",amt:btc.toFixed(6)+" BTC",usd:val,chain:"BTC"}]:[],ok:true};
-  }catch(e){return{usd:0,items:[],ok:false}}
-}
-function render(total,items,syncMeta){
-  const pct=Math.max(0,Math.min(100,(total/GOAL)*100));
-  document.getElementById("raisedLabel").textContent=money(total)+" raised so far";
-  document.getElementById("raisedBar").style.width=pct.toFixed(1)+"%";
-  if(syncMeta.priceOk&&syncMeta.anyOk){
-    document.getElementById("raisedNote").textContent=money(total)+" of $5,000 synced from wallets. "+pct.toFixed(1)+"% of milestone.";
-    setSyncBanner("ok","Synced from wallets · "+new Date().toLocaleTimeString());
-  }else if(!syncMeta.priceOk){
-    document.getElementById("raisedNote").textContent=money(total)+" of $5,000. Price feed unavailable — shown total may be incomplete.";
-    setSyncBanner("err","Donation sync issue: CoinGecko price feed failed. Totals may be stale or $0 until prices load.");
-  }else{
-    document.getElementById("raisedNote").textContent=money(total)+" of $5,000. Some chain APIs failed — shown total may be incomplete.";
-    setSyncBanner("err","Donation sync issue: one or more wallet RPCs failed ("+syncMeta.failed.join(", ")+"). Showing partial or $0 until sync recovers.");
-  }
-  const box=document.getElementById("donorList");
-  if(!items.length){
-    box.innerHTML='<p class="fine">No donations yet. Be the first.</p>';
-    return;
-  }
-  box.innerHTML=items.slice(0,8).map(d=>'<div class="donor"><b>'+d.label+' · '+d.chain+'</b><span>'+d.amt+'</span></div>').join("");
-}
-async function refreshDonations(){
-  let priceOk=false;
-  try{await pricesNow();priceOk=true}catch(e){priceOk=false}
-  const [sol,eth,base,btc]=await Promise.all([
-    solIn(),
-    evmBal("https://ethereum.publicnode.com","ETH"),
-    evmBal("https://base.publicnode.com","BASE"),
-    btcIn()
-  ]);
-  const failed=[];
-  if(!sol.ok)failed.push("SOL");
-  if(!eth.ok)failed.push("ETH");
-  if(!base.ok)failed.push("Base");
-  if(!btc.ok)failed.push("BTC");
-  const anyOk=sol.ok||eth.ok||base.ok||btc.ok;
-  const items=[].concat(sol.items,eth.items,base.items,btc.items).filter(d=>d.usd>0);
-  const total=sol.usd+eth.usd+base.usd+btc.usd;
-  render(total,items,{priceOk,anyOk,failed});
-  items.forEach(d=>{
-    if(!seen[d.id]&&d.usd>=1){mark(d.id);toast("New support · "+d.amt+" · "+money(d.usd))}
-    else mark(d.id);
-  });
-}
-refreshDonations();
-setInterval(refreshDonations,20000);
-</script>
+
+<script src="assets/main.js"></script>
 </body>
 </html>
