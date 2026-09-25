@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>CAB AI — App vision (not live yet)</title>
-<meta name="description" content="Product vision walkthrough: order a ride, inspect vehicle details, pick a playlist, and preview live view mode."/>
+<meta name="description" content="Product vision: order a ride from a partner-owned robotaxi, inspect vehicle details, pick a playlist, and preview live view mode."/>
 <link rel="icon" href="assets/logo-app-icon.png" type="image/png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -26,6 +26,7 @@
     <div class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
       <a href="app.html" aria-current="page">Vision / App</a>
+      <a href="index.html#partners">Partners</a>
       <a href="index.html#support">Support</a>
       <a href="https://t.me/CABAIlykk" target="_blank" rel="noopener">Telegram</a>
       <a class="nav-cta-m" href="index.html#waitlist">Get updates</a>
@@ -39,7 +40,7 @@
     <div class="app-intro">
       <span class="vision-badge">Vision — not live yet</span>
       <h1>What the app will feel like</h1>
-      <p class="prose">Click through a product mock of ordering a robotaxi: set a trip, inspect the vehicle, choose music, then open view mode. This is an illustrative walkthrough — not a timed ride simulation.</p>
+      <p class="prose">Click through a product mock of ordering a partner-owned robotaxi: set a trip, inspect the vehicle, choose music, then open view mode. Units in this walkthrough stand in for cars listed by owners — CAB AI does not buy the fleet. This is illustrative, not a timed ride simulation.</p>
     </div>
 
     <div class="app-layout">
@@ -56,7 +57,6 @@
           <div class="phone-notch" aria-hidden="true"></div>
           <div class="phone-screen">
 
-            <!-- Screen 1: Home -->
             <section class="screen active" data-screen="0" aria-label="Home — set pickup and destination">
               <div class="screen-top">
                 <div class="app-name"><span class="cab">CAB</span> <span class="ai">AI</span></div>
@@ -102,13 +102,12 @@
               </div>
             </section>
 
-            <!-- Screen 2: Vehicles -->
-            <section class="screen" data-screen="1" aria-label="Choose vehicle with full details">
+            <section class="screen" data-screen="1" aria-label="Choose partner vehicle with full details">
               <div class="screen-top">
                 <div class="app-name"><span class="cab">CAB</span> <span class="ai">AI</span></div>
                 <span class="vision-badge">Vision</span>
               </div>
-              <p class="eyebrow" style="margin-bottom:14px">Available units</p>
+              <p class="eyebrow" style="margin-bottom:14px">Partner units nearby</p>
 
               <div class="veh-card selected" data-veh="aurora" role="button" tabindex="0">
                 <div class="veh-head">
@@ -116,7 +115,7 @@
                   <span class="veh-eta">ETA 4 min</span>
                 </div>
                 <div class="veh-stats">
-                  <div class="stat">Model<b>Robotaxi Sedan</b></div>
+                  <div class="stat">Listed by<b>Partner owner</b></div>
                   <div class="stat">Seats<b>4</b></div>
                   <div class="stat">Battery
                     <b>87%</b>
@@ -134,7 +133,7 @@
                   <span class="veh-eta">ETA 7 min</span>
                 </div>
                 <div class="veh-stats">
-                  <div class="stat">Model<b>Robotaxi SUV</b></div>
+                  <div class="stat">Listed by<b>Partner owner</b></div>
                   <div class="stat">Seats<b>6</b></div>
                   <div class="stat">Battery
                     <b>72%</b>
@@ -154,14 +153,13 @@
               </div>
             </section>
 
-            <!-- Screen 3: Playlist -->
             <section class="screen" data-screen="2" aria-label="Choose playlist before arrival">
               <div class="screen-top">
                 <div class="app-name"><span class="cab">CAB</span> <span class="ai">AI</span></div>
                 <span class="vision-badge">Vision</span>
               </div>
               <p class="eyebrow" style="margin-bottom:8px">Music before arrival</p>
-              <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Cabin audio starts when your unit is ~2 minutes out.</p>
+              <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Cabin audio starts when the partner unit is ~2 minutes out.</p>
 
               <div class="playlist selected" data-pl="neon" role="button" tabindex="0">
                 <div class="art" style="background:linear-gradient(135deg,#D4AF37,#3DE0FF)"></div>
@@ -188,7 +186,6 @@
               </div>
             </section>
 
-            <!-- Screen 4: View mode — live dashcam vision -->
             <section class="screen" data-screen="3" aria-label="View mode — robotaxi dashcam preview">
               <div class="screen-top">
                 <div class="app-name"><span class="cab">CAB</span> <span class="ai">AI</span></div>
@@ -216,7 +213,7 @@
                     </div>
                     <div class="cam-hud-bottom">
                       <div class="cam-meta">
-                        <div class="cam-title">Aurora S · hood cam</div>
+                        <div class="cam-title">Aurora S · hood cam · partner unit</div>
                         <div class="cam-chips">
                           <span class="cam-chip"><span class="cam-chip-k">SPD</span> 38 km/h</span>
                           <span class="cam-chip cam-chip-gold"><span class="cam-chip-k">ETA</span> 4 min</span>
@@ -231,7 +228,7 @@
                         <span class="cam-minimap-label">EN ROUTE</span>
                       </div>
                     </div>
-                    <p class="cam-preview-note">Product vision preview · sample street footage — not a live fleet camera yet</p>
+                    <p class="cam-preview-note">Product vision preview · sample street footage — not a live partner camera yet</p>
                   </div>
                   <button type="button" class="cam-toggle" data-cam-toggle aria-label="Pause dashcam preview" title="Pause / play">❚❚</button>
                 </div>
@@ -249,7 +246,7 @@
       </div>
     </div>
 
-    <p class="app-footnote">Product mock only. No live fleet, no dispatch loop, no compressed countdown game.</p>
+    <p class="app-footnote">Product mock only. No live partner fleet, no dispatch loop. Vehicles shown represent owner-listed units, not cars purchased by CAB AI.</p>
   </div>
 </main>
 
@@ -257,7 +254,7 @@
   <div class="wrap footer-row">
     <div>
       <div class="brand-text footer-brand"><span class="cab">CAB</span> <span class="ai">AI</span></div>
-      <p><strong>Concept-stage project.</strong> Not affiliated with Tesla. App screens are vision UI.</p>
+      <p><strong>Concept-stage project.</strong> Not affiliated with Tesla. App screens are vision UI for a partner network.</p>
     </div>
     <div class="footer-links">
       <a href="index.html">Home</a>
